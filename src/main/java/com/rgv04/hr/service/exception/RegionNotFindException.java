@@ -1,6 +1,6 @@
 package com.rgv04.hr.service.exception;
 
-public class RegionNotFindException extends EntidadeNaoEncontradaException {
+public class RegionNotFindException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
