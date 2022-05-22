@@ -11,5 +11,9 @@ public class RegionNotFindException extends EntityNotFoundException {
 	public RegionNotFindException(Long regionId) {
 		this(String.format("There is no registration of region with code %d", regionId));
 	}
+	
+	public RegionNotFindException(Long regionId, String countryId) {
+		this(String.format("There is no registration of region with code %d and country with code %s", regionId, countryId));
+	}
 
 }

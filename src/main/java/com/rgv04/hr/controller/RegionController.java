@@ -56,5 +56,14 @@ public class RegionController {
 		List<CountryDTO> countriesDto = countryAssembler.toListDto(countries);
 		return ResponseEntity.ok(countriesDto);
 	}
+	
+	@GetMapping("{regionId}/country/{countryId}")
+	public ResponseEntity<CountryDTO> findByCountry(@PathVariable Long regionId, @PathVariable String countryId) {
+		RegionFilter regionFilter = new RegionFilter(regionId, countryId);
+		Region region = this.regionService.byCountry(regionFilter);
+		RegionDTO regionDTO = this.regionAssembler.toDto(region);
+		CountryDTO countryDTO = regionDTO.getCountries().get(0);
+		return ResponseEntity.ok(countryDTO);
+	}
 
 }

@@ -15,7 +15,7 @@ public class RegionService {
 
 	@Autowired
 	private RegionRepository regionRepository;
-	
+
 	public List<Region> listByFilter(RegionFilter filter) {
 		return this.regionRepository.listByFilter(filter);
 	}
@@ -26,6 +26,15 @@ public class RegionService {
 			throw new RegionNotFindException(id);
 		}
 		return region;
+	}
+
+	public Region byCountry(RegionFilter filter) {
+		List<Region> listByFilter = this.regionRepository.listByFilter(filter);
+		if (listByFilter != null && listByFilter.size() > 0) {
+			return listByFilter.get(0);
+		}
+		throw new RegionNotFindException(filter.getRegionId(), filter.getCountryId());
+
 	}
 
 }

@@ -25,14 +25,18 @@ public class RegionRepositoryImpl implements RegionRepositoryQueries {
 	public List<Region> listByFilter(RegionFilter filter) {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT DISTINCT r FROM Region r JOIN FETCH r.countries WHERE 1=1 ");
+		sql.append("SELECT DISTINCT r FROM Region r JOIN FETCH r.countries c WHERE 1=1 ");		
 		if (filter.getRegionId() != null) {
 			sql.append(" and r.id = :regionId ");
 			parametros.put("regionId", filter.getRegionId());
 		}
-		if (filter.getName() != null) {
+		if (filter.getRegionName() != null) {
 			sql.append(" AND r.name LIKE :name ");
-			parametros.put("name", filter.getName().concat("%"));
+			parametros.put("name", filter.getRegionName().concat("%"));
+		}
+		if (filter.getCountryId() != null) {
+			sql.append(" AND c.id = :countryId ");
+			parametros.put("countryId", filter.getCountryId());
 		}
 		Query query = manager.createQuery(sql.toString());
 		for (String key : parametros.keySet()) {

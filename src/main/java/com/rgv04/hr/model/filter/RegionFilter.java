@@ -1,18 +1,25 @@
 package com.rgv04.hr.model.filter;
 
-import com.rgv04.hr.model.dto.CountryDTO;
-
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class RegionFilter {
 
 	private Long regionId;
 
-	private String name;
-	
-	private CountryDTO country;
+	private String regionName;
+
+	private String countryId;
+
+	private String countryName;
+
+	public RegionFilter(Long regionId, String countryId) {
+		this.regionId = regionId;
+		this.countryId = countryId;
+	}
 
 }

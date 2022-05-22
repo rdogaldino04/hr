@@ -37,11 +37,4 @@ public class Region {
 	@OneToMany(mappedBy = "region", cascade = CascadeType.ALL, targetEntity = Country.class, fetch = FetchType.LAZY)
 	private List<Country> countries = new ArrayList<>();
 
-//	public Region(Long id, String name) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//	}
-//	
-
 }
