@@ -9,8 +9,9 @@ import com.rgv04.hr.model.Country;
 import com.rgv04.hr.model.dto.CountryDTO;
 
 @Component
-public class CountryAssembler {
+public class CountryAssembler implements Assembler<Country, CountryDTO> {
 
+	@Override
 	public List<CountryDTO> toListDto(List<Country> listEntity) {
 		List<CountryDTO> countryDtoList = new ArrayList<>();
 		listEntity.forEach(country -> {
@@ -22,6 +23,7 @@ public class CountryAssembler {
 		return countryDtoList;
 	}
 
+	@Override
 	public CountryDTO toDto(Country country) {
 		CountryDTO countryDTO = new CountryDTO();
 		country.setId(country.getId());

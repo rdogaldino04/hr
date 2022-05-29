@@ -10,11 +10,12 @@ import com.rgv04.hr.model.Region;
 import com.rgv04.hr.model.dto.RegionDTO;
 
 @Component
-public class RegionAssembler {
+public class RegionAssembler implements Assembler<Region, RegionDTO> {
 
 	@Autowired
 	private CountryAssembler countryAssembler;
 
+	@Override
 	public ArrayList<RegionDTO> toListDto(List<Region> listEntity) {
 		ArrayList<RegionDTO> list = new ArrayList<>();
 		listEntity.forEach(r -> {
@@ -27,6 +28,7 @@ public class RegionAssembler {
 		return list;
 	}
 
+	@Override
 	public RegionDTO toDto(Region region) {
 		if (region != null) {
 			RegionDTO regionDTO = new RegionDTO();

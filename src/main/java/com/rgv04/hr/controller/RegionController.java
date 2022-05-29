@@ -26,13 +26,13 @@ public class RegionController {
 
 	@Autowired
 	private RegionService regionService;
-	
+
 	@Autowired
 	private CountryService countryService;
 
 	@Autowired
 	private RegionAssembler regionAssembler;
-	
+
 	@Autowired
 	private CountryAssembler countryAssembler;
 
@@ -49,15 +49,15 @@ public class RegionController {
 		RegionDTO regionDto = regionAssembler.toDto(region);
 		return ResponseEntity.ok(regionDto);
 	}
-	
+
 	@GetMapping("{regionId}/country")
 	public ResponseEntity<List<CountryDTO>> findByRegion(@PathVariable Long regionId) {
 		List<Country> countries = this.countryService.findByRegion(regionId);
 		List<CountryDTO> countriesDto = countryAssembler.toListDto(countries);
 		return ResponseEntity.ok(countriesDto);
 	}
-	
-	@GetMapping("{regionId}/country/{countryId}")
+
+	@GetMapping("{regionId}/countries/{countryId}")
 	public ResponseEntity<CountryDTO> findByCountry(@PathVariable Long regionId, @PathVariable String countryId) {
 		RegionFilter regionFilter = new RegionFilter(regionId, countryId);
 		Region region = this.regionService.byCountry(regionFilter);
