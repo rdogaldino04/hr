@@ -26,8 +26,8 @@ public class CountryAssembler implements Assembler<Country, CountryDTO> {
 	@Override
 	public CountryDTO toDto(Country country) {
 		CountryDTO countryDTO = new CountryDTO();
-		country.setId(country.getId());
-		country.setName(country.getName());
+		countryDTO.setId(country.getId());
+		countryDTO.setName(country.getName());
 		return countryDTO;
 	}
 
