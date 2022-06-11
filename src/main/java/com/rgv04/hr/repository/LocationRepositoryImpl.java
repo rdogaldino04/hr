@@ -37,8 +37,8 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 		}
 
 		if (StringUtils.hasText(filter.getPostalCode())) {
-			sql.append(" and l.postalCode = :postalCode ");
-			parametros.put("postalCode", filter.getPostalCode());
+			sql.append(" and lower(l.postalCode) like lower((:postalCode)) ");
+			parametros.put("postalCode", filter.getPostalCode().concat("%"));
 		}
 
 		if (StringUtils.hasText(filter.getCity())) {
