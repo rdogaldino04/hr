@@ -1,25 +1,14 @@
-package com.rgv04.hr.model;
+package com.rgv04.hr.model.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "employees", schema = "hr")
-public class Employee {
-
-	@Id
-	@Column(name = "EMPLOYEE_ID")
+public class EmployeeDTO {
 	private Long id;
 
-	@Column(name = "FIRST_NAME")
 	private String firstName;
 
 	private String lastName;
@@ -39,5 +28,4 @@ public class Employee {
 	// MANAGER_ID
 
 	// DEPARTMENT_ID
-
 }
