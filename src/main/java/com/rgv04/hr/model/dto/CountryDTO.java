@@ -11,4 +11,6 @@ public class CountryDTO {
 
 	private String name;
 
+	private RegionDTO region;
+
 }

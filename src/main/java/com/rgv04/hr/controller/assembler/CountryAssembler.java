@@ -8,8 +8,13 @@ import org.springframework.stereotype.Component;
 import com.rgv04.hr.model.Country;
 import com.rgv04.hr.model.dto.CountryDTO;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Component
 public class CountryAssembler implements Assembler<Country, CountryDTO> {
+
+	private final RegionAssembler regionAssembler;
 
 	@Override
 	public List<CountryDTO> toListDto(List<Country> listEntity) {
@@ -18,6 +23,7 @@ public class CountryAssembler implements Assembler<Country, CountryDTO> {
 			CountryDTO countryDto = new CountryDTO();
 			countryDto.setId(country.getId());
 			countryDto.setName(country.getName());
+			countryDto.setRegion(this.regionAssembler.toDto(country.getRegion()));
 			countryDtoList.add(countryDto);
 		});
 		return countryDtoList;

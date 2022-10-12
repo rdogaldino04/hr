@@ -8,13 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "countries", schema = "hr")
+@Table(name = "countries")
 public class Country {
 
 	@Id
@@ -24,7 +22,7 @@ public class Country {
 	@Column(name = "COUNTRY_NAME")
 	private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "REGION_ID")
 	private Region region;
 
