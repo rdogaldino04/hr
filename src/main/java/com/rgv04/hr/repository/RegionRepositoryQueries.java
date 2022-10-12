@@ -9,6 +9,4 @@ public interface RegionRepositoryQueries {
 
 	List<Region> listByFilter(RegionFilter filter);
 	
-	Region byId(Long id);
-
 }

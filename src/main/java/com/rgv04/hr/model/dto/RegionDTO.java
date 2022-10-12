@@ -14,6 +14,4 @@ public class RegionDTO {
 
 	private String name;
 
-	private List<CountryDTO> countries = new ArrayList<>();
-
 }
