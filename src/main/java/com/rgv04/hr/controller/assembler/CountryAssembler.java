@@ -14,8 +14,6 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class CountryAssembler implements Assembler<Country, CountryDTO> {
 
-	private final RegionAssembler regionAssembler;
-
 	@Override
 	public List<CountryDTO> toListDto(List<Country> listEntity) {
 		List<CountryDTO> countryDtoList = new ArrayList<>();
@@ -23,7 +21,6 @@ public class CountryAssembler implements Assembler<Country, CountryDTO> {
 			CountryDTO countryDto = new CountryDTO();
 			countryDto.setId(country.getId());
 			countryDto.setName(country.getName());
-			countryDto.setRegion(this.regionAssembler.toDto(country.getRegion()));
 			countryDtoList.add(countryDto);
 		});
 		return countryDtoList;
