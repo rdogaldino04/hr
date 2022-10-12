@@ -24,7 +24,9 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 	public List<Location> findByFilter(LocationFilter filter) {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("select l from Location l ").append("join fetch l.country ").append("where 1=1 ");
+		sql.append("select l from Location l ")
+				.append("join fetch l.country c ")
+				.append("where 1=1 ");
 
 		if (filter.getLocationId() != null) {
 			sql.append(" and l.id = :locationId ");

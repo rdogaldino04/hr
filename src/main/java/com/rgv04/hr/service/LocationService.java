@@ -11,7 +11,7 @@ import com.rgv04.hr.repository.LocationRepository;
 
 @Service
 public class LocationService {
-	
+
 	@Autowired
 	private LocationRepository locationRepository;
 
