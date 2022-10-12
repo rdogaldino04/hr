@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rgv04.hr.controller.assembler.RegionAssembler;
 import com.rgv04.hr.controller.model.RegionInput;
+import com.rgv04.hr.controller.model.RegionOutput;
 import com.rgv04.hr.model.Region;
 import com.rgv04.hr.model.dto.RegionDTO;
 import com.rgv04.hr.model.filter.RegionFilter;

@@ -1,18 +1,18 @@
 package com.rgv04.hr.service.exception;
 
-public class RegionNotFindException extends EntityNotFoundException {
+public class RegionNotFoundException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
-	public RegionNotFindException(String message) {
+	public RegionNotFoundException(String message) {
 		super(message);
 	}
 
-	public RegionNotFindException(Long regionId) {
+	public RegionNotFoundException(Long regionId) {
 		this(String.format("There is no registration of region with code %d", regionId));
 	}
 	
-	public RegionNotFindException(Long regionId, String countryId) {
+	public RegionNotFoundException(Long regionId, String countryId) {
 		this(String.format("There is no registration of region with code %d and country with code %s", regionId, countryId));
 	}
 

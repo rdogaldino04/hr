@@ -1,4 +1,4 @@
-package com.rgv04.hr.controller;
+package com.rgv04.hr.controller.model;
 
 import lombok.Getter;
 import lombok.Setter;
