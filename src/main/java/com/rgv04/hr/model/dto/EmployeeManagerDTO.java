@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDTO {
+public class EmployeeManagerDTO {
+
 	private Long id;
 
 	private String firstName;
@@ -31,7 +32,6 @@ public class EmployeeDTO {
 
 	private BigDecimal commissionPct;
 
-	private EmployeeManagerDTO employeeManager;
-
 	private DepartamentDTO departament;
+	
 }
