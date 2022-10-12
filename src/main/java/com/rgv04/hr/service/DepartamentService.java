@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.rgv04.hr.model.Departament;
-import com.rgv04.hr.model.DepartamentRepository;
+import com.rgv04.hr.repository.DepartamentRepository;
 import com.rgv04.hr.service.exception.BusinessException;
 
 import lombok.RequiredArgsConstructor;

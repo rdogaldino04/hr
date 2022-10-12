@@ -1,7 +1,9 @@
-package com.rgv04.hr.model;
+package com.rgv04.hr.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.rgv04.hr.model.Departament;
 
 @Repository
 public interface DepartamentRepository extends JpaRepository<Departament, Long> {
