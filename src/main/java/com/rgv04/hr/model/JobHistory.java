@@ -14,7 +14,7 @@ import lombok.Data;
 public class JobHistory {
 
     @EmbeddedId
-    private JobHistoryPK jobHistoryPK;
+    private JobHistoryID jobHistoryID;
 
     private OffsetDateTime endDate;
 

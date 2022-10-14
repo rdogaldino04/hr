@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.rgv04.hr.model.JobHistory;
-import com.rgv04.hr.model.JobHistoryPK;
+import com.rgv04.hr.model.JobHistoryID;
 import com.rgv04.hr.repository.JobHistoryRepository;
 import com.rgv04.hr.service.exception.BusinessException;
 
@@ -23,7 +23,7 @@ public class JobHistoryService {
     }
     
     public JobHistory findById(Long employeeId, String startDate) {
-        JobHistoryPK jobHistoryPK = new JobHistoryPK(employeeId, OffsetDateTime.parse(startDate));
+        JobHistoryID jobHistoryPK = new JobHistoryID(employeeId, OffsetDateTime.parse(startDate));
         return this.jobHistoryRepository.findById(jobHistoryPK)
             .orElseThrow(() -> new BusinessException("Resource not found"));
     }

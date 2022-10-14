@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @Embeddable
-public class JobHistoryPK implements Serializable {
+public class JobHistoryID implements Serializable {
 
     @EqualsAndHashCode.Include
     private Long employeeId;
