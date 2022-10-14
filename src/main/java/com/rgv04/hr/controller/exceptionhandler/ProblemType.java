@@ -4,14 +4,14 @@ import lombok.Getter;
 @Getter
 public enum ProblemType {
 	
-	DADOS_INVALIDOS("/dados-invalidos", "Dados inválidos"),
-	ERRO_DE_SISTEMA("/erro-de-sistema", "Erro de sistema"),
-	PARAMETRO_INVALIDO("/parametro-invalido", "Parâmetro inválido"),
-	MENSAGEM_INCOMPREENSIVEL("/mensagem-incompreensivel", "Mensagem incompreensível"),
-	RECURSO_NAO_ENCONTRADO("/recurso-nao-encontrado", "Recurso não encontrado"),
-	ENTIDADE_EM_USO("/entidade-em-uso", "Entidade em uso"),
-	ACESSO_NEGADO("/acesso-negado", "Acesso negado"),
-	ERRO_NEGOCIO("/erro-negocio", "Violação de regra de negócio");
+	INVALID_DATA("/invalid-data", "Invalid data"),
+	SYSTEM_ERROR("/system-error", "System error"),
+	INVALID_PARAMETER("/invalid-parameter", "Invalid parameter"),
+	INCOMPREHENSIBLE_MESSAGE("/incomprehensible-message", "Incomprehensible message"),
+	RESOURCE_NOT_FOUND("/resource-not-found", "Resource not found"),
+	ENTITY_IN_USE("/entity-in-use", "Entity in use"),
+	ACCESS_DENIED("/access-denied", "Access denied"),
+	BUSINESS_ERROR("/business-error", "Business rule violation");
 		
 	private String title;
 	private String uri;
