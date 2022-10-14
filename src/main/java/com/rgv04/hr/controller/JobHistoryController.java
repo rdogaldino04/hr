@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rgv04.hr.controller.assembler.JobHistoryAssembler;
+import com.rgv04.hr.controller.model.JobHistoryModel;
 import com.rgv04.hr.model.JobHistory;
 import com.rgv04.hr.service.JobHistoryService;
 
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class JobHistoryController {
 
     private final JobHistoryService jobHistoryService;
+    private final JobHistoryAssembler jobHistoryAssembler;
     
     @GetMapping
     public ResponseEntity<List<JobHistory>> findAll() {
@@ -26,9 +29,9 @@ public class JobHistoryController {
     }
 
     @GetMapping("jobs")
-    public ResponseEntity<JobHistory> findById(@RequestParam(required = true) Long employeeId,
-            @RequestParam(required = true) String startDate) {        
-        return ResponseEntity.ok(jobHistoryService.findById(employeeId, startDate));
+    public ResponseEntity<JobHistoryModel> findById(@RequestParam(required = true) Long employeeId,
+            @RequestParam(required = true) String startDate) {
+        return ResponseEntity.ok(this.jobHistoryAssembler.toDto(jobHistoryService.findById(employeeId, startDate)));
     }
 
 }
