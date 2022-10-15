@@ -1,11 +1,24 @@
 package com.rgv04.hr.security.model;
 
-import lombok.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Data
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data @AllArgsConstructor @NoArgsConstructor
+@Entity
+@Table(name = "roles")
 public class Role {
 
-    private int id;
+    @Id
+    @Column(name = "roles_id")
+    private Long id;
+
+    @Column(name = "roles_name")
     private String name;
 
 }
