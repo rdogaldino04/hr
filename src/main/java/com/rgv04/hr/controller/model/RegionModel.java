@@ -1,11 +1,11 @@
-package com.rgv04.hr.model.dto;
+package com.rgv04.hr.controller.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RegionDTO {
+public class RegionModel {
 
 	private Long id;
 

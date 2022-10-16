@@ -29,8 +29,8 @@ public class CountryController {
 	@GetMapping
 	public ResponseEntity<List<CountryModel>> findAll(CountryFilter countryFilter) {
 		List<Country> countries = this.countryService.findAll(countryFilter);
-		List<CountryModel> countryDTOs = this.countryAssembler.toListDto(countries);
-		return ResponseEntity.ok(countryDTOs);
+		List<CountryModel> countryModels = this.countryAssembler.toListDto(countries);
+		return ResponseEntity.ok(countryModels);
 	}
 
 	@GetMapping("{id}")

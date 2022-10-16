@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rgv04.hr.controller.assembler.RegionAssembler;
 import com.rgv04.hr.controller.model.RegionInput;
+import com.rgv04.hr.controller.model.RegionModel;
 import com.rgv04.hr.controller.model.RegionOutput;
 import com.rgv04.hr.model.Region;
-import com.rgv04.hr.model.dto.RegionDTO;
 import com.rgv04.hr.model.filter.RegionFilter;
 import com.rgv04.hr.service.RegionService;
 
@@ -41,16 +41,16 @@ public class RegionController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<RegionDTO>> listByFilter(RegionFilter filter) {
+	public ResponseEntity<List<RegionModel>> listByFilter(RegionFilter filter) {
 		List<Region> listEntity = this.regionService.listByFilter(filter);
-		ArrayList<RegionDTO> list = regionAssembler.toListDto(listEntity);
+		ArrayList<RegionModel> list = regionAssembler.toListDto(listEntity);
 		return ResponseEntity.ok(list);
 	}
 
 	@GetMapping("{id}")
-	public ResponseEntity<RegionDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<RegionModel> findById(@PathVariable Long id) {
 		Region region = this.regionService.findById(id);
-		RegionDTO regionDto = regionAssembler.toDto(region);
+		RegionModel regionDto = regionAssembler.toDto(region);
 		return ResponseEntity.ok(regionDto);
 	}
 

@@ -5,17 +5,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.model.RegionModel;
 import com.rgv04.hr.model.Region;
-import com.rgv04.hr.model.dto.RegionDTO;
 
 @Component
-public class RegionAssembler implements Assembler<Region, RegionDTO> {
+public class RegionAssembler implements Assembler<Region, RegionModel> {
 
 	@Override
-	public ArrayList<RegionDTO> toListDto(List<Region> listEntity) {
-		ArrayList<RegionDTO> list = new ArrayList<>();
+	public ArrayList<RegionModel> toListDto(List<Region> listEntity) {
+		ArrayList<RegionModel> list = new ArrayList<>();
 		listEntity.forEach(r -> {
-			RegionDTO regionDTO = new RegionDTO();
+			RegionModel regionDTO = new RegionModel();
 			regionDTO.setId(r.getId());
 			regionDTO.setName(r.getName());
 			list.add(regionDTO);
@@ -24,8 +24,8 @@ public class RegionAssembler implements Assembler<Region, RegionDTO> {
 	}
 
 	@Override
-	public RegionDTO toDto(Region region) {
-		RegionDTO regionDTO = new RegionDTO();
+	public RegionModel toDto(Region region) {
+		RegionModel regionDTO = new RegionModel();
 		regionDTO.setId(region.getId());
 		regionDTO.setName(region.getName());
 		return regionDTO;
