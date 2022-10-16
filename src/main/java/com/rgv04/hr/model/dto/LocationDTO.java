@@ -1,5 +1,7 @@
 package com.rgv04.hr.model.dto;
 
+import com.rgv04.hr.controller.model.CountryModel;
+
 import lombok.Data;
 
 @Data

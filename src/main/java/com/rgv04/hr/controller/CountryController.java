@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgv04.hr.controller.assembler.CountryAssembler;
+import com.rgv04.hr.controller.model.CountryModel;
 import com.rgv04.hr.model.Country;
-import com.rgv04.hr.model.dto.CountryModel;
 import com.rgv04.hr.model.filter.CountryFilter;
 import com.rgv04.hr.service.CountryService;
 

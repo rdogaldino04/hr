@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.model.CountryModel;
 import com.rgv04.hr.model.Country;
-import com.rgv04.hr.model.dto.CountryModel;
 
 import lombok.RequiredArgsConstructor;
 
