@@ -23,7 +23,7 @@ import com.rgv04.hr.model.filter.RegionFilter;
 import com.rgv04.hr.service.RegionService;
 
 @RestController
-@RequestMapping("regions")
+@RequestMapping("api/regions")
 public class RegionController {
 
 	@Autowired
