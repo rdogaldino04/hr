@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CountryDTO {
+public class CountryModel {
 
 	private String id;
 

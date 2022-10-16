@@ -15,6 +15,6 @@ public class LocationDTO {
 
 	private String stateProvince;
 
-	private CountryDTO country;
+	private CountryModel country;
 
 }

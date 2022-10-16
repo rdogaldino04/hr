@@ -6,19 +6,19 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.model.Country;
-import com.rgv04.hr.model.dto.CountryDTO;
+import com.rgv04.hr.model.dto.CountryModel;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-public class CountryAssembler implements Assembler<Country, CountryDTO> {
+public class CountryAssembler implements Assembler<Country, CountryModel> {
 
 	@Override
-	public List<CountryDTO> toListDto(List<Country> listEntity) {
-		List<CountryDTO> countryDtoList = new ArrayList<>();
+	public List<CountryModel> toListDto(List<Country> listEntity) {
+		List<CountryModel> countryDtoList = new ArrayList<>();
 		listEntity.forEach(country -> {
-			CountryDTO countryDto = new CountryDTO();
+			CountryModel countryDto = new CountryModel();
 			countryDto.setId(country.getId());
 			countryDto.setName(country.getName());
 			countryDtoList.add(countryDto);
@@ -27,8 +27,8 @@ public class CountryAssembler implements Assembler<Country, CountryDTO> {
 	}
 
 	@Override
-	public CountryDTO toDto(Country country) {
-		CountryDTO countryDTO = new CountryDTO();
+	public CountryModel toDto(Country country) {
+		CountryModel countryDTO = new CountryModel();
 		countryDTO.setId(country.getId());
 		countryDTO.setName(country.getName());
 		return countryDTO;
