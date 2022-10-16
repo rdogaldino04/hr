@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rgv04.hr.model.Country;
 import com.rgv04.hr.model.Region;
 import com.rgv04.hr.model.filter.RegionFilter;
 import com.rgv04.hr.repository.RegionRepository;
@@ -17,6 +18,9 @@ public class RegionService {
 
 	@Autowired
 	private RegionRepository regionRepository;
+
+	@Autowired
+	private CountryService countryService;
 
 	public Region save(Region region) {
 		region.setId(null);
@@ -31,6 +35,10 @@ public class RegionService {
 		return this.regionRepository
 				.findById(id)
 				.orElseThrow(() -> new RegionNotFoundException(id));
+	}
+
+	public List<Country> findByCountries(Long regionId) {
+		return this.countryService.findByRegion(regionId);
 	}
 
 }
