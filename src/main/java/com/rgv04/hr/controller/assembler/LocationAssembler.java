@@ -36,8 +36,14 @@ public class LocationAssembler implements Assembler<Location, LocationModel> {
 
 	@Override
 	public LocationModel toModel(Location entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return LocationModel.builder()
+				.id(entity.getId())
+				.city(entity.getCity())
+				.postalCode(entity.getPostalCode())
+				.stateProvince(entity.getStateProvince())
+				.streetAddress(entity.getStreetAddress())
+				.country(this.countryAssembler.toModel(entity.getCountry()))
+				.build();
 	}
 
 }

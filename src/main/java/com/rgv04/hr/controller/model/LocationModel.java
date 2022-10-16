@@ -1,8 +1,14 @@
 package com.rgv04.hr.controller.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class LocationModel {
 
 	private Long id;

@@ -21,11 +21,12 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 	private EntityManager manager;
 
 	@Override
-	public List<Location> findByFilter(LocationFilter filter) {
+	public List<Location> ListByFilter(LocationFilter filter) {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select l from Location l ")
 				.append("join fetch l.country c ")
+				.append("join fetch c.region r ")
 				.append("where 1=1 ");
 
 		if (filter.getLocationId() != null) {

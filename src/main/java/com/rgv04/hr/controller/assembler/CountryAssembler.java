@@ -32,6 +32,9 @@ public class CountryAssembler implements Assembler<Country, CountryModel> {
 
 	@Override
 	public CountryModel toModel(Country country) {
+		if (country == null) {
+			return new CountryModel();
+		}
 		return CountryModel.builder()
 				.id(country.getId())
 				.name(country.getName())
