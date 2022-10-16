@@ -1,7 +1,11 @@
-package com.rgv04.hr.model.dto;
+package com.rgv04.hr.controller.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+
+import com.rgv04.hr.model.dto.DepartamentDTO;
+import com.rgv04.hr.model.dto.EmployeeManagerDTO;
+import com.rgv04.hr.model.dto.JobDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +16,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDTO {
+public class EmployeeModel {
+
 	private Long id;
 
 	private String firstName;
@@ -34,4 +39,5 @@ public class EmployeeDTO {
 	private EmployeeManagerDTO employeeManager;
 
 	private DepartamentDTO departament;
+
 }

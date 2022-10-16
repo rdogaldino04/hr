@@ -18,6 +18,9 @@ public class DepartamentAssembler implements Assembler<Departament, DepartamentD
 
     @Override
     public DepartamentDTO toDto(Departament entity) {
+        if (entity == null) {
+            entity = new Departament();
+        }
         return DepartamentDTO.builder()
             .id(entity.getId())
             .name(entity.getName())

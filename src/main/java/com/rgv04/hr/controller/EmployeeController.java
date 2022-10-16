@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgv04.hr.controller.assembler.EmployeeAssembler;
+import com.rgv04.hr.controller.model.EmployeeModel;
 import com.rgv04.hr.model.Employee;
-import com.rgv04.hr.model.dto.EmployeeDTO;
 import com.rgv04.hr.service.EmployeeService;
 
 @RestController
-@RequestMapping("employees")
+@RequestMapping("api/employees")
 public class EmployeeController {
 
 	@Autowired
@@ -25,16 +25,16 @@ public class EmployeeController {
 	private EmployeeAssembler employeeAssembler;
 
 	@GetMapping
-	public ResponseEntity<List<EmployeeDTO>> findAll() {
+	public ResponseEntity<List<EmployeeModel>> findAll() {
 		List<Employee> employees = employeeService.findAll();
-		List<EmployeeDTO> employeeDTOs = employeeAssembler.toListDto(employees);
+		List<EmployeeModel> employeeDTOs = employeeAssembler.toListDto(employees);
 		return ResponseEntity.ok(employeeDTOs);
 	}
 
 	@GetMapping("{id}")
-	public ResponseEntity<EmployeeDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<EmployeeModel> findById(@PathVariable Long id) {
 		Employee employee = employeeService.findById(id);
-		EmployeeDTO employeeDTO = employeeAssembler.toDto(employee);
+		EmployeeModel employeeDTO = employeeAssembler.toDto(employee);
 		return ResponseEntity.ok(employeeDTO);
 	}
 
