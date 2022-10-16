@@ -1,4 +1,4 @@
-package com.rgv04.hr.model.dto;
+package com.rgv04.hr.controller.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeManagerDTO {
+public class EmployeeManagerModel {
 
 	private Long id;
 
@@ -26,12 +26,12 @@ public class EmployeeManagerDTO {
 
 	private OffsetDateTime hireDate;
 
-	private JobDTO job;
+	private JobModel job;
 
 	private BigDecimal salary;
 
 	private BigDecimal commissionPct;
 
-	private DepartamentDTO departament;
+	private DepartamentModel departament;
 	
 }

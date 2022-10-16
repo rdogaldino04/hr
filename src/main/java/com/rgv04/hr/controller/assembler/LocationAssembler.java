@@ -7,20 +7,20 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.model.LocationModel;
 import com.rgv04.hr.model.Location;
-import com.rgv04.hr.model.dto.LocationDTO;
 
 @Component
-public class LocationAssembler implements Assembler<Location, LocationDTO> {
+public class LocationAssembler implements Assembler<Location, LocationModel> {
 
 	@Autowired
 	private CountryAssembler countryAssembler;
 
 	@Override
-	public List<LocationDTO> toListModel(List<Location> entities) {
+	public List<LocationModel> toListModel(List<Location> entities) {
 		if (entities != null && entities.size() > 0) {
-			List<LocationDTO> locationDTOs = entities.stream().map(e -> {
-				LocationDTO locationDTO = new LocationDTO();
+			List<LocationModel> locationDTOs = entities.stream().map(e -> {
+				LocationModel locationDTO = new LocationModel();
 				locationDTO.setId(e.getId());
 				locationDTO.setCity(e.getCity());
 				locationDTO.setPostalCode(e.getPostalCode());
@@ -35,7 +35,7 @@ public class LocationAssembler implements Assembler<Location, LocationDTO> {
 	}
 
 	@Override
-	public LocationDTO toModel(Location entity) {
+	public LocationModel toModel(Location entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

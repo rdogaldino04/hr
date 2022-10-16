@@ -2,9 +2,6 @@ package com.rgv04.hr.controller.model;
 
 import java.time.OffsetDateTime;
 
-import com.rgv04.hr.model.dto.DepartamentDTO;
-import com.rgv04.hr.model.dto.JobDTO;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -18,8 +15,8 @@ public class JobHistoryModel {
 
     private OffsetDateTime endDate;
 
-    private JobDTO job;
+    private JobModel job;
 
-    private DepartamentDTO departament;
+    private DepartamentModel departament;
 
 }

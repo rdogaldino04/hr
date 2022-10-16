@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgv04.hr.controller.assembler.LocationAssembler;
+import com.rgv04.hr.controller.model.LocationModel;
 import com.rgv04.hr.model.Location;
-import com.rgv04.hr.model.dto.LocationDTO;
 import com.rgv04.hr.model.filter.LocationFilter;
 import com.rgv04.hr.service.LocationService;
 
@@ -24,9 +24,9 @@ public class LocationController {
 	private LocationAssembler locationAssembler;
     
     @GetMapping
-    public List<LocationDTO> findByFilter(LocationFilter filter) {
+    public List<LocationModel> findByFilter(LocationFilter filter) {
     	List<Location> findByFilter = this.locationService.findByFilter(filter);
-    	List<LocationDTO> listDto = locationAssembler.toListModel(findByFilter);
+    	List<LocationModel> listDto = locationAssembler.toListModel(findByFilter);
         return listDto;
     }
 }

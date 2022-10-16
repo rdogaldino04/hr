@@ -1,11 +1,9 @@
-package com.rgv04.hr.model.dto;
-
-import com.rgv04.hr.controller.model.CountryModel;
+package com.rgv04.hr.controller.model;
 
 import lombok.Data;
 
 @Data
-public class LocationDTO {
+public class LocationModel {
 
 	private Long id;
 

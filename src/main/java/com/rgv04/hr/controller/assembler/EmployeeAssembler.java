@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.model.EmployeeManagerModel;
 import com.rgv04.hr.controller.model.EmployeeModel;
 import com.rgv04.hr.model.Employee;
-import com.rgv04.hr.model.dto.EmployeeManagerDTO;
 
 @Component
 public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
@@ -61,9 +61,9 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 				.build();
 	}
 
-	private EmployeeManagerDTO createEmployeeManager(Employee entity) {
+	private EmployeeManagerModel createEmployeeManager(Employee entity) {
 		if (entity == null) {
-			return EmployeeManagerDTO.builder()
+			return EmployeeManagerModel.builder()
 					.id(null)
 					.firstName(null)
 					.lastName(null)
@@ -76,7 +76,7 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 					.departament(null)
 					.build();
 		}
-		return EmployeeManagerDTO.builder()
+		return EmployeeManagerModel.builder()
 				.id(entity.getId())
 				.firstName(entity.getFirstName())
 				.lastName(entity.getLastName())

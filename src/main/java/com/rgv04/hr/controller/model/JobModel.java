@@ -1,11 +1,11 @@
-package com.rgv04.hr.model.dto;
+package com.rgv04.hr.controller.model;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class JobDTO {
+public class JobModel {
 
     private String id;
 
