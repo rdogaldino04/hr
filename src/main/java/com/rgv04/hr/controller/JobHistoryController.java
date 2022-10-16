@@ -31,7 +31,7 @@ public class JobHistoryController {
     @GetMapping("jobs")
     public ResponseEntity<JobHistoryModel> findById(@RequestParam(required = true) Long employeeId,
             @RequestParam(required = true) String startDate) {
-        return ResponseEntity.ok(this.jobHistoryAssembler.toDto(jobHistoryService.findById(employeeId, startDate)));
+        return ResponseEntity.ok(this.jobHistoryAssembler.toModel(jobHistoryService.findById(employeeId, startDate)));
     }
 
 }

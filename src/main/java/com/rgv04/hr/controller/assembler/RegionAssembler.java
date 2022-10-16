@@ -12,7 +12,7 @@ import com.rgv04.hr.model.Region;
 public class RegionAssembler implements Assembler<Region, RegionModel> {
 
 	@Override
-	public ArrayList<RegionModel> toListDto(List<Region> listEntity) {
+	public ArrayList<RegionModel> toListModel(List<Region> listEntity) {
 		ArrayList<RegionModel> list = new ArrayList<>();
 		listEntity.forEach(r -> {
 			RegionModel regionDTO = new RegionModel();
@@ -24,7 +24,7 @@ public class RegionAssembler implements Assembler<Region, RegionModel> {
 	}
 
 	@Override
-	public RegionModel toDto(Region region) {
+	public RegionModel toModel(Region region) {
 		RegionModel regionDTO = new RegionModel();
 		regionDTO.setId(region.getId());
 		regionDTO.setName(region.getName());

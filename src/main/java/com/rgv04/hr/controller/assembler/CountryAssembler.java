@@ -19,23 +19,23 @@ public class CountryAssembler implements Assembler<Country, CountryModel> {
 	private RegionAssembler regionAssembler;
 
 	@Override
-	public List<CountryModel> toListDto(List<Country> listEntity) {
+	public List<CountryModel> toListModel(List<Country> listEntity) {
 		List<CountryModel> countryDtoList = listEntity.stream().map(country -> {
 			return CountryModel.builder()
 					.id(country.getId())
 					.name(country.getName())
-					.region(regionAssembler.toDto(country.getRegion()))
+					.region(regionAssembler.toModel(country.getRegion()))
 					.build();
 		}).collect(Collectors.toList());
 		return countryDtoList;
 	}
 
 	@Override
-	public CountryModel toDto(Country country) {
+	public CountryModel toModel(Country country) {
 		return CountryModel.builder()
 				.id(country.getId())
 				.name(country.getName())
-				.region(regionAssembler.toDto(country.getRegion()))
+				.region(regionAssembler.toModel(country.getRegion()))
 				.build();
 	}
 

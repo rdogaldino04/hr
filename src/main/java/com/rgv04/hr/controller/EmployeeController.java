@@ -27,14 +27,14 @@ public class EmployeeController {
 	@GetMapping
 	public ResponseEntity<List<EmployeeModel>> findAll() {
 		List<Employee> employees = employeeService.findAll();
-		List<EmployeeModel> employeeDTOs = employeeAssembler.toListDto(employees);
+		List<EmployeeModel> employeeDTOs = employeeAssembler.toListModel(employees);
 		return ResponseEntity.ok(employeeDTOs);
 	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<EmployeeModel> findById(@PathVariable Long id) {
 		Employee employee = employeeService.findById(id);
-		EmployeeModel employeeDTO = employeeAssembler.toDto(employee);
+		EmployeeModel employeeDTO = employeeAssembler.toModel(employee);
 		return ResponseEntity.ok(employeeDTO);
 	}
 

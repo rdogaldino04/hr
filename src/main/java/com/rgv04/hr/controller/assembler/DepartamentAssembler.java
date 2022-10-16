@@ -11,13 +11,13 @@ import com.rgv04.hr.model.dto.DepartamentDTO;
 public class DepartamentAssembler implements Assembler<Departament, DepartamentDTO> {
 
     @Override
-    public List<DepartamentDTO> toListDto(List<Departament> entities) {
+    public List<DepartamentDTO> toListModel(List<Departament> entities) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public DepartamentDTO toDto(Departament entity) {
+    public DepartamentDTO toModel(Departament entity) {
         if (entity == null) {
             entity = new Departament();
         }

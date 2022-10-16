@@ -11,13 +11,13 @@ import com.rgv04.hr.model.dto.JobDTO;
 public class JobAssembler implements Assembler<Job, JobDTO> {
 
     @Override
-    public List<JobDTO> toListDto(List<Job> entities) {
+    public List<JobDTO> toListModel(List<Job> entities) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public JobDTO toDto(Job entity) {
+    public JobDTO toModel(Job entity) {
         return JobDTO.builder()
             .id(entity.getId())
             .title(entity.getTitle())

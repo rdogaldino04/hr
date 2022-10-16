@@ -26,7 +26,7 @@ public class LocationController {
     @GetMapping
     public List<LocationDTO> findByFilter(LocationFilter filter) {
     	List<Location> findByFilter = this.locationService.findByFilter(filter);
-    	List<LocationDTO> listDto = locationAssembler.toListDto(findByFilter);
+    	List<LocationDTO> listDto = locationAssembler.toListModel(findByFilter);
         return listDto;
     }
 }

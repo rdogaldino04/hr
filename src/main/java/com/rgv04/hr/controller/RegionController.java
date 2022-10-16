@@ -43,14 +43,14 @@ public class RegionController {
 	@GetMapping
 	public ResponseEntity<List<RegionModel>> listByFilter(RegionFilter filter) {
 		List<Region> listEntity = this.regionService.listByFilter(filter);
-		ArrayList<RegionModel> list = regionAssembler.toListDto(listEntity);
+		ArrayList<RegionModel> list = regionAssembler.toListModel(listEntity);
 		return ResponseEntity.ok(list);
 	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<RegionModel> findById(@PathVariable Long id) {
 		Region region = this.regionService.findById(id);
-		RegionModel regionDto = regionAssembler.toDto(region);
+		RegionModel regionDto = regionAssembler.toModel(region);
 		return ResponseEntity.ok(regionDto);
 	}
 

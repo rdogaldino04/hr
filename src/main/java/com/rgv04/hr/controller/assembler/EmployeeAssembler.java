@@ -21,7 +21,7 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 	private DepartamentAssembler departamentAssembler;
 
 	@Override
-	public List<EmployeeModel> toListDto(List<Employee> entities) {
+	public List<EmployeeModel> toListModel(List<Employee> entities) {
 		if (entities != null && entities.size() > 0) {
 			return entities.stream().map(entity -> {
 				return EmployeeModel
@@ -32,11 +32,11 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 						.email(entity.getEmail())
 						.phoneNumber(entity.getPhoneNumber())
 						.hireDate(entity.getHireDate())
-						.job(this.jobAssembler.toDto(entity.getJob()))
+						.job(this.jobAssembler.toModel(entity.getJob()))
 						.salary(entity.getSalary())
 						.employeeManager(createEmployeeManager(entity.getEmployeeManager()))
 						.commissionPct(entity.getCommissionPct())
-						.departament(this.departamentAssembler.toDto(entity.getDepartament()))
+						.departament(this.departamentAssembler.toModel(entity.getDepartament()))
 						.build();
 			}).collect(Collectors.toList());
 		}
@@ -44,7 +44,7 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 	}
 
 	@Override
-	public EmployeeModel toDto(Employee entity) {
+	public EmployeeModel toModel(Employee entity) {
 		return EmployeeModel
 				.builder()
 				.id(entity.getId())
@@ -53,11 +53,11 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 				.email(entity.getEmail())
 				.phoneNumber(entity.getPhoneNumber())
 				.hireDate(entity.getHireDate())
-				.job(this.jobAssembler.toDto(entity.getJob()))
+				.job(this.jobAssembler.toModel(entity.getJob()))
 				.salary(entity.getSalary())
 				.employeeManager(createEmployeeManager(entity.getEmployeeManager()))
 				.commissionPct(entity.getCommissionPct())
-				.departament(this.departamentAssembler.toDto(entity.getDepartament()))
+				.departament(this.departamentAssembler.toModel(entity.getDepartament()))
 				.build();
 	}
 
@@ -83,10 +83,10 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 				.email(entity.getEmail())
 				.phoneNumber(entity.getPhoneNumber())
 				.hireDate(entity.getHireDate())
-				.job(this.jobAssembler.toDto(entity.getJob()))
+				.job(this.jobAssembler.toModel(entity.getJob()))
 				.salary(entity.getSalary())
 				.commissionPct(entity.getCommissionPct())
-				.departament(departamentAssembler.toDto(entity.getDepartament()))
+				.departament(departamentAssembler.toModel(entity.getDepartament()))
 				.build();
 	}
 

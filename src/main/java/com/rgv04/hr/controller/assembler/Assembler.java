@@ -2,10 +2,10 @@ package com.rgv04.hr.controller.assembler;
 
 import java.util.List;
 
-public interface Assembler<Entity, Dto> {
+public interface Assembler<Entity, Model> {
 
-	List<Dto> toListDto(List<Entity> entities);
+	List<Model> toListModel(List<Entity> entities);
 	
-	Dto toDto(Entity entity);
+	Model toModel(Entity entity);
 
 }

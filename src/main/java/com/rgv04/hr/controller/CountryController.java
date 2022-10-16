@@ -29,13 +29,13 @@ public class CountryController {
 	@GetMapping
 	public ResponseEntity<List<CountryModel>> findAll(CountryFilter countryFilter) {
 		List<Country> countries = this.countryService.findAll(countryFilter);
-		List<CountryModel> countryModels = this.countryAssembler.toListDto(countries);
+		List<CountryModel> countryModels = this.countryAssembler.toListModel(countries);
 		return ResponseEntity.ok(countryModels);
 	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<CountryModel> findById(@PathVariable String id) {
-		return ResponseEntity.ok(this.countryAssembler.toDto(countryService.findById(id)));
+		return ResponseEntity.ok(this.countryAssembler.toModel(countryService.findById(id)));
 	}
 
 }

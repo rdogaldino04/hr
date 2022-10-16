@@ -17,19 +17,19 @@ public class JobHistoryAssembler implements Assembler<JobHistory, JobHistoryMode
     private final DepartamentAssembler departamentAssembler;
 
     @Override
-    public List<JobHistoryModel> toListDto(List<JobHistory> entities) {        
+    public List<JobHistoryModel> toListModel(List<JobHistory> entities) {        
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public JobHistoryModel toDto(JobHistory entity) {
+    public JobHistoryModel toModel(JobHistory entity) {
         return JobHistoryModel.builder()
                 .employeeId(entity.getJobHistoryID().getEmployeeId())
                 .startDate(entity.getJobHistoryID().getStartDate())
                 .endDate(entity.getEndDate())
-                .job(jobAssembler.toDto(entity.getJob()))
-                .departament(departamentAssembler.toDto(entity.getDepartament()))
+                .job(jobAssembler.toModel(entity.getJob()))
+                .departament(departamentAssembler.toModel(entity.getDepartament()))
                 .build();
     }
     

@@ -17,7 +17,7 @@ public class LocationAssembler implements Assembler<Location, LocationDTO> {
 	private CountryAssembler countryAssembler;
 
 	@Override
-	public List<LocationDTO> toListDto(List<Location> entities) {
+	public List<LocationDTO> toListModel(List<Location> entities) {
 		if (entities != null && entities.size() > 0) {
 			List<LocationDTO> locationDTOs = entities.stream().map(e -> {
 				LocationDTO locationDTO = new LocationDTO();
@@ -26,7 +26,7 @@ public class LocationAssembler implements Assembler<Location, LocationDTO> {
 				locationDTO.setPostalCode(e.getPostalCode());
 				locationDTO.setStateProvince(e.getStateProvince());
 				locationDTO.setStreetAddress(e.getStreetAddress());
-				locationDTO.setCountry(this.countryAssembler.toDto(e.getCountry()));
+				locationDTO.setCountry(this.countryAssembler.toModel(e.getCountry()));
 				return locationDTO;
 			}).collect(Collectors.toList());
 			return locationDTOs;
@@ -35,7 +35,7 @@ public class LocationAssembler implements Assembler<Location, LocationDTO> {
 	}
 
 	@Override
-	public LocationDTO toDto(Location entity) {
+	public LocationDTO toModel(Location entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
