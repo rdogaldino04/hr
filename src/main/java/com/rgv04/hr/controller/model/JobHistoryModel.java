@@ -2,6 +2,8 @@ package com.rgv04.hr.controller.model;
 
 import java.time.OffsetDateTime;
 
+import com.rgv04.hr.job.controller.model.JobModel;
+
 import lombok.Builder;
 import lombok.Data;
 

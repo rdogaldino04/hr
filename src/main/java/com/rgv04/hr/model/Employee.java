@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.rgv04.hr.job.model.Job;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.rgv04.hr.controller;
+package com.rgv04.hr.job.controller;
 
 import java.util.List;
 
@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.model.Job;
-import com.rgv04.hr.service.JobService;
+import com.rgv04.hr.job.model.Job;
+import com.rgv04.hr.job.model.filter.JobFilter;
+import com.rgv04.hr.job.service.JobService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +22,8 @@ public class JobController {
     private final JobService jobService;
 
     @GetMapping
-    public ResponseEntity<List<Job>> findAll() {
-        return ResponseEntity.ok(jobService.findAll());
+    public ResponseEntity<List<Job>> findAll(JobFilter filter) {
+        return ResponseEntity.ok(jobService.findAll(filter));
     }
 
     @GetMapping("{id}")

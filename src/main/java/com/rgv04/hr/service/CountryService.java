@@ -34,7 +34,7 @@ public class CountryService {
 	}
 
     public List<Country> findAll(CountryFilter countryFilter) {		
-        return this.countryRepository.findAll(CountrySpecs.useFilter(countryFilter));
+        return this.countryRepository.findAll(CountrySpecs.getSpecs(countryFilter));
     }
 
 }

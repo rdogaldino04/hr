@@ -1,4 +1,4 @@
-package com.rgv04.hr.controller.model;
+package com.rgv04.hr.job.controller.model;
 
 import lombok.Builder;
 import lombok.Data;

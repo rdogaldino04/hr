@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.controller.model.JobHistoryModel;
+import com.rgv04.hr.job.controller.assembler.JobAssembler;
 import com.rgv04.hr.model.JobHistory;
 
 import lombok.RequiredArgsConstructor;

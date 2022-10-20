@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.controller.model.EmployeeManagerModel;
 import com.rgv04.hr.controller.model.EmployeeModel;
+import com.rgv04.hr.job.controller.assembler.JobAssembler;
 import com.rgv04.hr.model.Employee;
 
 @Component

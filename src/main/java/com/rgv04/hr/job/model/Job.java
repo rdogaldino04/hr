@@ -1,4 +1,4 @@
-package com.rgv04.hr.model;
+package com.rgv04.hr.job.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

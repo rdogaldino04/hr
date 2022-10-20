@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.rgv04.hr.job.model.Job;
+
 import lombok.Data;
 
 @Data
