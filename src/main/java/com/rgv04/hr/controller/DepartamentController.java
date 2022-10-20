@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("departaments")
+@RequestMapping("api/departaments")
 public class DepartamentController {
 
     private final DepartamentService departamentService;

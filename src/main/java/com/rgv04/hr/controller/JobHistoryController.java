@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("jobHistorys")
+@RequestMapping("api/jobHistorys")
 public class JobHistoryController {
 
     private final JobHistoryService jobHistoryService;
