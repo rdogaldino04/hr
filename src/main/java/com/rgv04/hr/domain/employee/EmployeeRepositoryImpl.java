@@ -20,8 +20,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepositoryQueries {
                 .append("where extract(year from e.hireDate) between :startYear and :endYear");
         TypedQuery<EmployeeOnlyFirstNameAndHireDate> createQuery = 
             manager.createQuery(sql.toString(), EmployeeOnlyFirstNameAndHireDate.class)
-            .setParameter("startYear", filter.getStartYear())
-            .setParameter("endYear", filter.getEndYear());
+            .setParameter("startYear", filter.getStartYear().intValue())
+            .setParameter("endYear", filter.getEndYear().intValue());
         return createQuery.getResultList();
     }
     

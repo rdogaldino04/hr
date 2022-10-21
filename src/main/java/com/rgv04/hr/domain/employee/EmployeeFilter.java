@@ -10,9 +10,9 @@ import lombok.Setter;
 public class EmployeeFilter {
 
     @NotNull
-    private int startYear;
+    private Long startYear;
 
     @NotNull
-    private int endYear;
+    private Long endYear;
 
 }
