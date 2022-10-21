@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 import com.rgv04.hr.domain.departament.DepartamentModel;
-import com.rgv04.hr.domain.job.controller.model.JobModel;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +26,6 @@ public class EmployeeManagerModel {
 	private String phoneNumber;
 
 	private OffsetDateTime hireDate;
-
-	private JobModel job;
 
 	private BigDecimal salary;
 
