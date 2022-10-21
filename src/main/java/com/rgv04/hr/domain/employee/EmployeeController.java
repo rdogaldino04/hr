@@ -43,4 +43,9 @@ public class EmployeeController {
 		return ResponseEntity.ok(employeeRepository.listByJoinedYear(filter));
 	}
 
+	@GetMapping("{id}/summary")
+	public ResponseEntity<EmployeeSumary> listByIdSummary(@PathVariable Long id) {		
+		return ResponseEntity.ok(employeeRepository.listByIdSummary(id));
+	}
+
 }
