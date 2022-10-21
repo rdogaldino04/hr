@@ -1,9 +1,7 @@
-package com.rgv04.hr.repository;
+package com.rgv04.hr.employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.rgv04.hr.model.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {

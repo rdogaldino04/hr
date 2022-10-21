@@ -131,7 +131,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 		ProblemType problemType = ProblemType.INVALID_PARAMETER;
 
-		String detail = String.format(
+		@SuppressWarnings("null")
+        String detail = String.format(
 				"The URL parameter '%s' was given the value '%s', "
 						+ "which is of an invalid type. Correct and enter a value compatible with type %s.",
 				ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());

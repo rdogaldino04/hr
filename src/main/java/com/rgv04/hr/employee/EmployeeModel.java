@@ -1,8 +1,9 @@
-package com.rgv04.hr.controller.model;
+package com.rgv04.hr.employee;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+import com.rgv04.hr.controller.model.DepartamentModel;
 import com.rgv04.hr.job.controller.model.JobModel;
 
 import lombok.AllArgsConstructor;

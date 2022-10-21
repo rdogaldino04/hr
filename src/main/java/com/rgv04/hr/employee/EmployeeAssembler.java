@@ -1,4 +1,4 @@
-package com.rgv04.hr.controller.assembler;
+package com.rgv04.hr.employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.controller.model.EmployeeManagerModel;
-import com.rgv04.hr.controller.model.EmployeeModel;
+import com.rgv04.hr.controller.assembler.Assembler;
+import com.rgv04.hr.controller.assembler.DepartamentAssembler;
 import com.rgv04.hr.job.controller.assembler.JobAssembler;
-import com.rgv04.hr.model.Employee;
 
 @Component
 public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
