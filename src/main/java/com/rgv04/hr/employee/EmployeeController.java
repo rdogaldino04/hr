@@ -2,6 +2,8 @@ package com.rgv04.hr.employee;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,9 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@Autowired
 	private EmployeeAssembler employeeAssembler;
@@ -31,6 +36,11 @@ public class EmployeeController {
 		Employee employee = employeeService.findById(id);
 		EmployeeModel employeeDTO = employeeAssembler.toModel(employee);
 		return ResponseEntity.ok(employeeDTO);
+	}
+
+	@GetMapping("joined")
+	public ResponseEntity<List<EmployeeOnlyFirstNameAndHireDate>> listByJoinedYear(@Valid EmployeeFilter filter) {		
+		return ResponseEntity.ok(employeeRepository.listByJoinedYear(filter));
 	}
 
 }
