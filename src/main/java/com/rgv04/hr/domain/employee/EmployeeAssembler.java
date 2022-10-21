@@ -83,7 +83,6 @@ public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {
 				.email(entity.getEmail())
 				.phoneNumber(entity.getPhoneNumber())
 				.hireDate(entity.getHireDate())
-				.job(this.jobAssembler.toModel(entity.getJob()))
 				.salary(entity.getSalary())
 				.commissionPct(entity.getCommissionPct())
 				.departament(departamentAssembler.toModel(entity.getDepartament()))

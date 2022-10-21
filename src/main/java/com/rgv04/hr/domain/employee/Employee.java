@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,7 +41,7 @@ public class Employee {
 
 	private OffsetDateTime hireDate;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "job_id")
 	private Job job;
 

@@ -34,8 +34,8 @@ public class EmployeeController {
 	@GetMapping("{id}")
 	public ResponseEntity<EmployeeModel> findById(@PathVariable Long id) {
 		Employee employee = employeeService.findById(id);
-		EmployeeModel employeeDTO = employeeAssembler.toModel(employee);
-		return ResponseEntity.ok(employeeDTO);
+		EmployeeModel employeeModel = employeeAssembler.toModel(employee);
+		return ResponseEntity.ok(employeeModel);
 	}
 
 	@GetMapping("joined")
