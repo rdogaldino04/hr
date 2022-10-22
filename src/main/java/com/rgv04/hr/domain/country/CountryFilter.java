@@ -13,4 +13,8 @@ public class CountryFilter {
 
     private String name;
 
+    private Long regionId;
+
+    private String regionName;
+
 }

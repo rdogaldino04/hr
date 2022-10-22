@@ -28,8 +28,8 @@ public class CountryService {
 		  .orElseThrow(() -> new CountryNotFoundException(String.format(THERE_IS_NO_REGISTRATION_OF_COUNTRY_WITH_CODE, id)));
 	}
 
-    public List<Country> findAll(CountryFilter countryFilter) {		
-        return this.countryRepository.findAll(CountrySpecs.getSpecs(countryFilter));
+    public List<Country> listByFilter(CountryFilter countryFilter) {		
+        return this.countryRepository.listByFilter(countryFilter);
     }
 
 }

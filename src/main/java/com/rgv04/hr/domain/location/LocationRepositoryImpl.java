@@ -19,7 +19,7 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 
 	@Override
 	public List<Location> ListByFilter(LocationFilter filter) {
-		Map<String, Object> parametros = new HashMap<String, Object>();
+		Map<String, Object> parameters = new HashMap<String, Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("select l from Location l ")
 				.append("join fetch l.country c ")
@@ -28,44 +28,44 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 
 		if (filter.getLocationId() != null) {
 			sql.append(" and l.id = :locationId ");
-			parametros.put("locationId", filter.getLocationId());
+			parameters.put("locationId", filter.getLocationId());
 		}
 
 		if (StringUtils.hasText(filter.getStreetAddress())) {
 			sql.append(" and lower(l.streetAddress) like lower((:streetAddress)) ");
-			parametros.put("streetAddress", filter.getStreetAddress().concat("%"));
+			parameters.put("streetAddress", filter.getStreetAddress().concat("%"));
 		}
 
 		if (StringUtils.hasText(filter.getPostalCode())) {
 			sql.append(" and lower(l.postalCode) like lower((:postalCode)) ");
-			parametros.put("postalCode", filter.getPostalCode().concat("%"));
+			parameters.put("postalCode", filter.getPostalCode().concat("%"));
 		}
 
 		if (StringUtils.hasText(filter.getCity())) {
 			sql.append(" and lower(l.city) like lower((:city)) ");
-			parametros.put("city", filter.getCity().concat("%"));
+			parameters.put("city", filter.getCity().concat("%"));
 		}
 
 		if (StringUtils.hasText(filter.getStateProvince())) {
 			sql.append(" and lower(l.stateProvince) like lower((:stateProvince)) ");
-			parametros.put("stateProvince", filter.getStateProvince().concat("%"));
+			parameters.put("stateProvince", filter.getStateProvince().concat("%"));
 		}
 
 		if (StringUtils.hasText(filter.getCountryId())) {
 			sql.append(" and l.country.id = :countryId ");
-			parametros.put("countryId", filter.getCountryId());
+			parameters.put("countryId", filter.getCountryId());
 		}
 
 		if (StringUtils.hasText(filter.getCountryName())) {
 			sql.append(" and lower(l.country.name) like lower(:countryName) ");
-			parametros.put("countryName", filter.getCountryName().concat("%"));
+			parameters.put("countryName", filter.getCountryName().concat("%"));
 		}
 
 		// @formatter:off
 		TypedQuery<Location> createQuery = manager.createQuery(sql.toString(), Location.class);
-		for (String key : parametros.keySet()) {
-			if (parametros.containsKey(key)) {
-				createQuery.setParameter(key, parametros.get(key));				
+		for (String key : parameters.keySet()) {
+			if (parameters.containsKey(key)) {
+				createQuery.setParameter(key, parameters.get(key));				
 			}
 		}
 		// @formatter:on

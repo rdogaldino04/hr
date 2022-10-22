@@ -23,11 +23,14 @@ public class RegionAssembler implements Assembler<Region, RegionModel> {
 	}
 
 	@Override
-	public RegionModel toModel(Region region) {
-		RegionModel regionDTO = new RegionModel();
-		regionDTO.setId(region.getId());
-		regionDTO.setName(region.getName());
-		return regionDTO;
+	public RegionModel toModel(Region entity) {
+		if (entity == null) {
+			entity = new Region();
+		}
+		return RegionModel.builder()
+				.id(entity.getId())
+				.name(entity.getName())
+				.build();
 	}
 
 }

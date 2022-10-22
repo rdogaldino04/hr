@@ -18,11 +18,10 @@ public class CountryController {
 	private final CountryService countryService;
 
 	private final CountryAssembler countryAssembler;
-	
 
 	@GetMapping
-	public ResponseEntity<List<CountryModel>> findAll(CountryFilter countryFilter) {
-		List<Country> countries = this.countryService.findAll(countryFilter);
+	public ResponseEntity<List<CountryModel>> listByFilter(CountryFilter countryFilter) {
+		List<Country> countries = this.countryService.listByFilter(countryFilter);
 		List<CountryModel> countryModels = this.countryAssembler.toListModel(countries);
 		return ResponseEntity.ok(countryModels);
 	}
