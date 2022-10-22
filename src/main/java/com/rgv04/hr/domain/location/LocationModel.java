@@ -1,17 +1,23 @@
 package com.rgv04.hr.domain.location;
 
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
+
 import com.rgv04.hr.domain.country.CountryModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocationModel {
+@Relation(collectionRelation = "locations")
+public class LocationModel extends RepresentationModel<LocationModel> {
 
 	private Long id;
 

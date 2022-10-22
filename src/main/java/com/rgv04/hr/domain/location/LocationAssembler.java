@@ -1,49 +1,32 @@
 package com.rgv04.hr.domain.location;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.assembler.Assembler;
-import com.rgv04.hr.domain.country.CountryAssembler;
-
 @Component
-public class LocationAssembler implements Assembler<Location, LocationModel> {
+public class LocationAssembler extends RepresentationModelAssemblerSupport<Location, LocationModel> {
 
 	@Autowired
-	private CountryAssembler countryAssembler;
+	private ModelMapper modelMapper;
+
+	public LocationAssembler() {
+		super(LocationController.class, LocationModel.class);
+	}
 
 	@Override
-	public List<LocationModel> toListModel(List<Location> entities) {
-		if (entities != null && entities.size() > 0) {
-			List<LocationModel> locationDTOs = entities.stream().map(e -> {
-				LocationModel locationDTO = new LocationModel();
-				locationDTO.setId(e.getId());
-				locationDTO.setCity(e.getCity());
-				locationDTO.setPostalCode(e.getPostalCode());
-				locationDTO.setStateProvince(e.getStateProvince());
-				locationDTO.setStreetAddress(e.getStreetAddress());
-				locationDTO.setCountry(this.countryAssembler.toModel(e.getCountry()));
-				return locationDTO;
-			}).collect(Collectors.toList());
-			return locationDTOs;
-		}
-		return new ArrayList<>();
+	public CollectionModel<LocationModel> toCollectionModel(Iterable<? extends Location> entities) {
+		CollectionModel<LocationModel> collectionModel = super.toCollectionModel(entities);
+		return collectionModel;
 	}
 
 	@Override
 	public LocationModel toModel(Location entity) {
-		return LocationModel.builder()
-				.id(entity.getId())
-				.city(entity.getCity())
-				.postalCode(entity.getPostalCode())
-				.stateProvince(entity.getStateProvince())
-				.streetAddress(entity.getStreetAddress())
-				.country(this.countryAssembler.toModel(entity.getCountry()))
-				.build();
+		LocationModel model = createModelWithId(entity.getId(), entity);
+		modelMapper.map(entity, model);
+		return model;
 	}
 
 }

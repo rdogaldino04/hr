@@ -3,6 +3,7 @@ package com.rgv04.hr.domain.location;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +21,10 @@ public class LocationController {
 	private LocationAssembler locationAssembler;
     
     @GetMapping
-    public ResponseEntity<List<LocationModel>> ListByFilter(LocationFilter filter) {
+    public ResponseEntity<CollectionModel<LocationModel>> ListByFilter(LocationFilter filter) {
     	List<Location> locations = this.locationService.ListByFilter(filter);
-    	List<LocationModel> listDtos = locationAssembler.toListModel(locations);
-        return ResponseEntity.ok(listDtos);
+    	CollectionModel<LocationModel> collectionModel = locationAssembler.toCollectionModel(locations);
+        return ResponseEntity.ok(collectionModel);
     }
 
 	@GetMapping("{id}")
