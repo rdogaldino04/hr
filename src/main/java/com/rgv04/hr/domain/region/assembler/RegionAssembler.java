@@ -1,26 +1,24 @@
 package com.rgv04.hr.domain.region.assembler;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.assembler.Assembler;
 import com.rgv04.hr.domain.region.Region;
+import com.rgv04.hr.domain.region.RegionController;
 import com.rgv04.hr.domain.region.assembler.model.RegionModel;
 
 @Component
-public class RegionAssembler implements Assembler<Region, RegionModel> {
+public class RegionAssembler extends RepresentationModelAssemblerSupport<Region, RegionModel> {
+
+	public RegionAssembler() {
+		super(RegionController.class, RegionModel.class);
+	}
 
 	@Override
-	public ArrayList<RegionModel> toListModel(List<Region> listEntity) {
-		ArrayList<RegionModel> list = new ArrayList<>();
-		listEntity.forEach(region -> {
-			if (region != null) {
-			  list.add(toModel(region));
-			}
-		});
-		return list;
+	public CollectionModel<RegionModel> toCollectionModel(Iterable<? extends Region> entities) {
+		CollectionModel<RegionModel> collectionModel = super.toCollectionModel(entities);
+		return collectionModel;
 	}
 
 	@Override
