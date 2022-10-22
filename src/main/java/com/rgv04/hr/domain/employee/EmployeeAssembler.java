@@ -18,7 +18,7 @@ import com.rgv04.hr.domain.job.controller.model.JobModel;
 import com.rgv04.hr.domain.location.Location;
 import com.rgv04.hr.domain.location.LocationModel;
 import com.rgv04.hr.domain.region.Region;
-import com.rgv04.hr.domain.region.RegionModel;
+import com.rgv04.hr.domain.region.assembler.model.RegionModel;
 
 @Component
 public class EmployeeAssembler implements Assembler<Employee, EmployeeModel> {

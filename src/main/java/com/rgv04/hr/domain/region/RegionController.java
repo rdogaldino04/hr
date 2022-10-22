@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.country.CountryAssembler;
-import com.rgv04.hr.domain.country.CountryModel;
+import com.rgv04.hr.domain.region.assembler.RegionAssembler;
+import com.rgv04.hr.domain.region.assembler.RegionWithCountryAssembler;
+import com.rgv04.hr.domain.region.assembler.model.RegionModel;
+import com.rgv04.hr.domain.region.assembler.model.RegionWithCountryModel;
 
 @RestController
 @RequestMapping("api/regions")
@@ -28,7 +30,7 @@ public class RegionController {
 	private RegionAssembler regionAssembler;
 
 	@Autowired
-	private CountryAssembler countryAssembler;
+	private RegionWithCountryAssembler regionWithCountryAssembler;
 
 	@PostMapping
 	public ResponseEntity<RegionOutput> save(@RequestBody @Valid RegionInput regionInput) {
@@ -53,8 +55,9 @@ public class RegionController {
 	}
 
 	@GetMapping("{regionId}/countries")
-	public ResponseEntity<List<CountryModel>> findByCountries(@PathVariable Long regionId) {
-		return ResponseEntity.ok(countryAssembler.toListModel(this.regionService.findByCountries(regionId)));
+	public ResponseEntity<RegionWithCountryModel> countriesByRegionId(@PathVariable Long regionId) {
+		Region regions = regionService.countriesByRegionId(regionId);		
+		return ResponseEntity.ok(regionWithCountryAssembler.toModel(regions));
 	}
 
 	private RegionOutput toOutput(Region region) {

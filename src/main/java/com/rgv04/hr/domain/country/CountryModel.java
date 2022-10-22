@@ -1,6 +1,6 @@
 package com.rgv04.hr.domain.country;
 
-import com.rgv04.hr.domain.region.RegionModel;
+import com.rgv04.hr.domain.region.assembler.model.RegionModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -10,7 +10,7 @@ import com.rgv04.hr.domain.country.CountryModel;
 import com.rgv04.hr.domain.location.Location;
 import com.rgv04.hr.domain.location.LocationModel;
 import com.rgv04.hr.domain.region.Region;
-import com.rgv04.hr.domain.region.RegionModel;
+import com.rgv04.hr.domain.region.assembler.model.RegionModel;
 
 @Component
 public class DepartamentAssembler implements Assembler<Departament, DepartamentModel> {

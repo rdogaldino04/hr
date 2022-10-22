@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.assembler.Assembler;
-import com.rgv04.hr.domain.region.RegionAssembler;
+import com.rgv04.hr.domain.region.assembler.RegionAssembler;
 
 import lombok.RequiredArgsConstructor;
 

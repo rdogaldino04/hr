@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.region;
+package com.rgv04.hr.domain.region.assembler.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
