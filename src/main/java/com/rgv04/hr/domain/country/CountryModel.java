@@ -1,5 +1,8 @@
 package com.rgv04.hr.domain.country;
 
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
+
 import com.rgv04.hr.domain.region.assembler.model.RegionModel;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +16,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CountryModel {
+@Relation(collectionRelation = "countries")
+public class CountryModel extends RepresentationModel<RegionModel> {
 
 	private String id;
 

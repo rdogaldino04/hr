@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Relation(collectionRelation = "regions")
-public class RegionModel extends RepresentationModel<RegionModel>{
+public class RegionModel extends RepresentationModel<RegionModel> {
 
 	private Long id;
 

@@ -1,45 +1,32 @@
 package com.rgv04.hr.domain.country;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.assembler.Assembler;
-import com.rgv04.hr.domain.region.assembler.RegionAssembler;
-
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Component
-public class CountryAssembler implements Assembler<Country, CountryModel> {
+public class CountryAssembler extends RepresentationModelAssemblerSupport<Country, CountryModel> {
 
 	@Autowired
-	private RegionAssembler regionAssembler;
+	private ModelMapper modelMapper;
 
-	@Override
-	public List<CountryModel> toListModel(List<Country> listEntity) {
-		List<CountryModel> countryDtoList = listEntity.stream().map(country -> {
-			return CountryModel.builder()
-					.id(country.getId())
-					.name(country.getName())
-					.region(regionAssembler.toModel(country.getRegion()))
-					.build();
-		}).collect(Collectors.toList());
-		return countryDtoList;
+	public CountryAssembler() {
+		super(Country.class, CountryModel.class);
 	}
 
 	@Override
-	public CountryModel toModel(Country country) {
-		if (country == null) {
-			return new CountryModel();
-		}
-		return CountryModel.builder()
-				.id(country.getId())
-				.name(country.getName())
-				.region(regionAssembler.toModel(country.getRegion()))
-				.build();
+	public CollectionModel<CountryModel> toCollectionModel(Iterable<? extends Country> entities) {
+		CollectionModel<CountryModel> collectionModel = super.toCollectionModel(entities);
+		return collectionModel;
+	}
+
+	@Override
+	public CountryModel toModel(Country entity) {
+		CountryModel countryModel = super.createModelWithId(entity.getId(), entity);
+		modelMapper.map(entity, countryModel);
+		return countryModel;
 	}
 
 }
