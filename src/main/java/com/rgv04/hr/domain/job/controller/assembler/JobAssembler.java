@@ -1,30 +1,34 @@
 package com.rgv04.hr.domain.job.controller.assembler;
 
-import java.util.List;
-
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.assembler.Assembler;
 import com.rgv04.hr.domain.job.controller.model.JobModel;
 import com.rgv04.hr.domain.job.model.Job;
 
 @Component
-public class JobAssembler implements Assembler<Job, JobModel> {
+public class JobAssembler extends RepresentationModelAssemblerSupport<Job, JobModel> {
+
+    @Autowired
+	private ModelMapper modelMapper;
+
+    public JobAssembler() {
+        super(Job.class, JobModel.class);
+    }
 
     @Override
-    public List<JobModel> toListModel(List<Job> entities) {
-        // TODO Auto-generated method stub
-        return null;
+    public CollectionModel<JobModel> toCollectionModel(Iterable<? extends Job> entities) {        
+        return super.toCollectionModel(entities);
     }
 
     @Override
     public JobModel toModel(Job entity) {
-        return JobModel.builder()
-            .id(entity.getId())
-            .title(entity.getTitle())
-            .minSalary(entity.getMinSalary())
-            .maxSalary(entity.getMaxSalary())
-            .build();        
+        JobModel model = createModelWithId(entity.getId(), entity);
+        modelMapper.map(entity, model);
+        return model;
     }
     
 }
