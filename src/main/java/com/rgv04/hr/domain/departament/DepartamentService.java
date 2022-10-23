@@ -14,11 +14,11 @@ public class DepartamentService {
 
     private final DepartamentRepository departamentRepository;
 
-    public List<Departament> findAll() {
-        return this.departamentRepository.findAll();
+    public List<Departament> getAll() {
+        return this.departamentRepository.getAll();
     }
 
-    public Departament findById(Long id) {
+    public Departament getById(Long id) {
         return this.departamentRepository.findById(id)
                 .orElseThrow(() -> new BusinessException("Entity not found"));
     }

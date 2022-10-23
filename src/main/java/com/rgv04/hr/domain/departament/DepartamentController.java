@@ -19,17 +19,16 @@ public class DepartamentController {
     private final DepartamentService departamentService;
     private final DepartamentAssembler departamentAssembler;
 
-    // TODO: implement problem n + 1
     @GetMapping
-    public ResponseEntity<CollectionModel<DepartamentModel>> findAll() {
-        List<Departament> departaments = departamentService.findAll();
+    public ResponseEntity<CollectionModel<DepartamentModel>> getAll() {
+        List<Departament> departaments = departamentService.getAll();
         CollectionModel<DepartamentModel> collectionModel = departamentAssembler.toCollectionModel(departaments);
         return ResponseEntity.ok(collectionModel);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<DepartamentModel> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(departamentAssembler.toModel(departamentService.findById(id)));
+    public ResponseEntity<DepartamentModel> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(departamentAssembler.toModel(departamentService.getById(id)));
     }
 
 }
