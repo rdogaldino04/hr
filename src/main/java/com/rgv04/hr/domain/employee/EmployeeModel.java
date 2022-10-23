@@ -3,19 +3,25 @@ package com.rgv04.hr.domain.employee;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
+
 import com.rgv04.hr.domain.departament.DepartamentModel;
 import com.rgv04.hr.domain.job.controller.model.JobModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeModel {
+@Relation(collectionRelation = "employees")
+public class EmployeeModel extends RepresentationModel<EmployeeModel> {
 
 	private Long id;
 
