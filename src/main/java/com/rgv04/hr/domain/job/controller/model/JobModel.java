@@ -1,6 +1,7 @@
 package com.rgv04.hr.domain.job.controller.model;
 
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Relation(collectionRelation = "jobs")
 public class JobModel extends RepresentationModel<JobModel> {
 
     private String id;

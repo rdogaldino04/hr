@@ -2,6 +2,7 @@ package com.rgv04.hr.domain.jobhistory;
 
 import java.util.List;
 
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,11 @@ public class JobHistoryController {
 
     private final JobHistoryService jobHistoryService;
     private final JobHistoryAssembler jobHistoryAssembler;
-    
+
     @GetMapping
-    public ResponseEntity<List<JobHistory>> findAll() {
-        return ResponseEntity.ok(jobHistoryService.findAll());
+    public ResponseEntity<CollectionModel<JobHistoryModel>> getAll() {
+        List<JobHistory> jobHistories = jobHistoryService.getAll();
+        return ResponseEntity.ok(jobHistoryAssembler.toCollectionModel(jobHistories));
     }
 
     @GetMapping("jobs")

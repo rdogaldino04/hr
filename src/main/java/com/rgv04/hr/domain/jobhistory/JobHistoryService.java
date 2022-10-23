@@ -15,8 +15,8 @@ public class JobHistoryService {
 
     private final JobHistoryRepository jobHistoryRepository;
 
-    public List<JobHistory> findAll() {
-        return this.jobHistoryRepository.findAll();
+    public List<JobHistory> getAll() {
+        return this.jobHistoryRepository.getAll();
     }
     
     public JobHistory findById(Long employeeId, String startDate) {

@@ -1,37 +1,31 @@
 package com.rgv04.hr.domain.jobhistory;
 
-import java.util.List;
-
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.assembler.Assembler;
-import com.rgv04.hr.domain.departament.DepartamentAssembler;
-import com.rgv04.hr.domain.job.controller.assembler.JobAssembler;
-
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Component
-public class JobHistoryAssembler implements Assembler<JobHistory, JobHistoryModel> {
+public class JobHistoryAssembler extends RepresentationModelAssemblerSupport<JobHistory, JobHistoryModel> {
 
-    private final JobAssembler jobAssembler;
-    private final DepartamentAssembler departamentAssembler;
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public JobHistoryAssembler() {
+        super(JobHistoryController.class, JobHistoryModel.class);
+    }
 
     @Override
-    public List<JobHistoryModel> toListModel(List<JobHistory> entities) {        
-        // TODO Auto-generated method stub
-        return null;
+    public CollectionModel<JobHistoryModel> toCollectionModel(Iterable<? extends JobHistory> entities) {
+        return super.toCollectionModel(entities);
     }
 
     @Override
     public JobHistoryModel toModel(JobHistory entity) {
-        return JobHistoryModel.builder()
-                .employeeId(entity.getJobHistoryID().getEmployeeId())
-                .startDate(entity.getJobHistoryID().getStartDate())
-                .endDate(entity.getEndDate())
-                .job(jobAssembler.toModel(entity.getJob()))
-                .departament(departamentAssembler.toModel(entity.getDepartament()))
-                .build();
+        JobHistoryModel model = createModelWithId(entity.getJobHistoryID(), entity);
+        modelMapper.map(entity, model);
+        return model;
     }
-    
+
 }
