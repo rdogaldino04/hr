@@ -13,7 +13,7 @@ public class CountryAssembler extends RepresentationModelAssemblerSupport<Countr
 	private ModelMapper modelMapper;
 
 	public CountryAssembler() {
-		super(Country.class, CountryModel.class);
+		super(CountryController.class, CountryModel.class);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.domain.job.controller.JobController;
 import com.rgv04.hr.domain.job.controller.model.JobModel;
 import com.rgv04.hr.domain.job.model.Job;
 
@@ -16,7 +17,7 @@ public class JobAssembler extends RepresentationModelAssemblerSupport<Job, JobMo
 	private ModelMapper modelMapper;
 
     public JobAssembler() {
-        super(Job.class, JobModel.class);
+        super(JobController.class, JobModel.class);
     }
 
     @Override
