@@ -1,11 +1,11 @@
-package com.rgv04.hr.domain.country.controller;
+package com.rgv04.hr.domain.country.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rgv04.hr.domain.country.CountryNotFoundException;
 import com.rgv04.hr.domain.country.entity.CountryImage;
 import com.rgv04.hr.domain.country.repository.CountryImageRepository;
-import com.rgv04.hr.exception.BusinessException;
 
 @Service
 public class CountryImageService {
@@ -15,7 +15,7 @@ public class CountryImageService {
 
     public CountryImage findById(String countryId) {
         return countryImageRepository.findById(countryId)
-                .orElseThrow(() -> new BusinessException(countryId));
+                .orElseThrow(() -> new CountryNotFoundException(countryId));
     }
 
 }

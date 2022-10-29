@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgv04.hr.domain.country.entity.CountryImage;
+import com.rgv04.hr.domain.country.service.CountryImageService;
 import com.rgv04.hr.exception.EntityNotFoundException;
 import com.rgv04.hr.storage.StorageService;
 import com.rgv04.hr.storage.StorageService.RecoveredImage;
