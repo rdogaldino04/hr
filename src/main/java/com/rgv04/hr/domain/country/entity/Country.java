@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country;
+package com.rgv04.hr.domain.country.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

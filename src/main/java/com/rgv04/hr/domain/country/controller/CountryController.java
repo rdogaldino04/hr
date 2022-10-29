@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.country.Country;
 import com.rgv04.hr.domain.country.CountryAssembler;
 import com.rgv04.hr.domain.country.CountryFilter;
 import com.rgv04.hr.domain.country.CountryModel;
+import com.rgv04.hr.domain.country.entity.Country;
 import com.rgv04.hr.domain.country.service.CountryService;
 
 import lombok.RequiredArgsConstructor;

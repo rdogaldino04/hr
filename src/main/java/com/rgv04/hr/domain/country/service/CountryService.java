@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.rgv04.hr.domain.country.Country;
 import com.rgv04.hr.domain.country.CountryFilter;
 import com.rgv04.hr.domain.country.CountryNotFoundException;
-import com.rgv04.hr.domain.country.CountryRepository;
+import com.rgv04.hr.domain.country.entity.Country;
+import com.rgv04.hr.domain.country.repository.CountryRepository;
 import com.rgv04.hr.domain.region.Region;
 
 import lombok.RequiredArgsConstructor;

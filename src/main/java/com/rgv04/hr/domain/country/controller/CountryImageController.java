@@ -1,16 +1,5 @@
 package com.rgv04.hr.domain.country.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.rgv04.hr.exception.BusinessException;
-import com.rgv04.hr.exception.EntityNotFoundException;
-import com.rgv04.hr.storage.StorageService;
-import com.rgv04.hr.storage.StorageService.RecoveredImage;
-
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +7,14 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rgv04.hr.exception.EntityNotFoundException;
+import com.rgv04.hr.storage.StorageService;
+import com.rgv04.hr.storage.StorageService.RecoveredImage;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController

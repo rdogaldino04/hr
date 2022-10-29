@@ -8,6 +8,8 @@ import javax.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
+import com.rgv04.hr.domain.country.entity.Country;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

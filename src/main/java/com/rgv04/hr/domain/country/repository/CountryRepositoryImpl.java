@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country;
+package com.rgv04.hr.domain.country.repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +9,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.util.StringUtils;
+
+import com.rgv04.hr.domain.country.CountryFilter;
+import com.rgv04.hr.domain.country.entity.Country;
 
 public class CountryRepositoryImpl implements CountryRepositoryQueries {
 
