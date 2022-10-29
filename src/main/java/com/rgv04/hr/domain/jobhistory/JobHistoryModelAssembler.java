@@ -6,13 +6,18 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.core.modelmapper.HrLinks;
+
 @Component
-public class JobHistoryAssembler extends RepresentationModelAssemblerSupport<JobHistory, JobHistoryModel> {
+public class JobHistoryModelAssembler extends RepresentationModelAssemblerSupport<JobHistory, JobHistoryModel> {
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public JobHistoryAssembler() {
+    @Autowired
+	private HrLinks hrLinks;
+
+    public JobHistoryModelAssembler() {
         super(JobHistoryController.class, JobHistoryModel.class);
     }
 
@@ -23,8 +28,9 @@ public class JobHistoryAssembler extends RepresentationModelAssemblerSupport<Job
 
     @Override
     public JobHistoryModel toModel(JobHistory entity) {
-        JobHistoryModel model = createModelWithId(entity.getJobHistoryID(), entity);
+        JobHistoryModel model = createModelWithId(entity.getJobHistoryID().getEmployeeId(), entity);
         modelMapper.map(entity, model);
+        model.add(hrLinks.linkToJobHistory(entity.getJobHistoryID().getEmployeeId(), "job-histories"));
         return model;
     }
 

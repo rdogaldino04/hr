@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class JobHistoryController {
 
     private final JobHistoryService jobHistoryService;
-    private final JobHistoryAssembler jobHistoryAssembler;
+    private final JobHistoryModelAssembler jobHistoryAssembler;
 
     @GetMapping
     public ResponseEntity<CollectionModel<JobHistoryModel>> getAll() {
