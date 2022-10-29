@@ -46,7 +46,7 @@ public class CountryImageController {
                 return ResponseEntity.notFound().build();
             } else {
                 return ResponseEntity.ok()
-                        .contentType(MediaType.IMAGE_PNG)
+                        .contentType(mediaTypeImage)
                         .body(new InputStreamResource(recoveredImage.getInputStream()));
             }            
         } catch (EntityNotFoundException e) {
