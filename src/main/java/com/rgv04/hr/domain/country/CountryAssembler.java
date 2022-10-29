@@ -6,6 +6,8 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.domain.country.controller.CountryController;
+
 @Component
 public class CountryAssembler extends RepresentationModelAssemblerSupport<Country, CountryModel> {
 
