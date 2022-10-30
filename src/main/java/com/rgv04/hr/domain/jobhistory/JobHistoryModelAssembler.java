@@ -6,7 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.core.modelmapper.HrLinks;
+import com.rgv04.hr.core.HrLinks;
 
 @Component
 public class JobHistoryModelAssembler extends RepresentationModelAssemblerSupport<JobHistory, JobHistoryModel> {

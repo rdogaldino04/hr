@@ -1,4 +1,4 @@
-package com.rgv04.hr.core.modelmapper;
+package com.rgv04.hr.core;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
