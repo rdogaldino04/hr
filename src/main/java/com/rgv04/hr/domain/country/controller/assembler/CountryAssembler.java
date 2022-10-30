@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country;
+package com.rgv04.hr.domain.country.controller.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.domain.country.controller.CountryController;
+import com.rgv04.hr.domain.country.controller.model.CountryModel;
 import com.rgv04.hr.domain.country.entity.Country;
 
 @Component

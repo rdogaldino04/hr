@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country;
+package com.rgv04.hr.domain.country.controller.model;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
