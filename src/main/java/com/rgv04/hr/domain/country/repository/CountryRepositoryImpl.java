@@ -8,11 +8,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.rgv04.hr.domain.country.CountryFilter;
 import com.rgv04.hr.domain.country.entity.Country;
+import com.rgv04.hr.domain.country.entity.CountryImage;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Repository
 public class CountryRepositoryImpl implements CountryRepositoryQueries {
 
     @PersistenceContext
@@ -52,6 +59,20 @@ public class CountryRepositoryImpl implements CountryRepositoryQueries {
             }
         });
         return createQuery.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public CountryImage saveImage(CountryImage countryImage) {
+        return manager.merge(countryImage);
+    }
+
+    @Transactional
+    @Override
+    public void deleteImageById(String countryId) {
+        StringBuilder sql = new StringBuilder("delete from CountryImage ci where ci.id = :countryId");
+        int executeUpdate = manager.createQuery(sql.toString()).setParameter("countryId", countryId).executeUpdate();
+        log.info("deleted images: {}", executeUpdate);
     }
 
 }

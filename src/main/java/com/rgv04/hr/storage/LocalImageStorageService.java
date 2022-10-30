@@ -5,11 +5,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.FileCopyUtils;
 
 public class LocalImageStorageService implements StorageService {
 
     @Autowired
-	private StorageProperties storageProperties;
+    private StorageProperties storageProperties;
 
     @Override
     public RecoveredImage recover(String fileName) {
@@ -26,8 +27,31 @@ public class LocalImageStorageService implements StorageService {
     }
 
     private Path getFilePath(String fileName) {
-		return storageProperties.getLocal().getDirectoryImages()
-				.resolve(Paths.get(fileName));
-	}
-    
+        return storageProperties.getLocal().getDirectoryImages()
+                .resolve(Paths.get(fileName));
+    }
+
+    @Override
+    public void store(newImage novaFoto) {
+        try {
+            Path arquivoPath = getFilePath(novaFoto.getFileName());
+
+            FileCopyUtils.copy(novaFoto.getInputStream(),
+                    Files.newOutputStream(arquivoPath));
+        } catch (Exception e) {
+            throw new StorageException("Could not store file.", e);
+        }
+    }
+
+    @Override
+    public void remove(String fileName) {
+        try {
+            Path arquivoPath = getFilePath(fileName);
+
+            Files.deleteIfExists(arquivoPath);
+        } catch (Exception e) {
+            throw new StorageException("Could not delete file.", e);
+        }
+    }
+
 }

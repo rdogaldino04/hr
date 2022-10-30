@@ -1,22 +1,33 @@
 package com.rgv04.hr.domain.country.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rgv04.hr.domain.country.controller.assembler.CountryImageAssembler;
+import com.rgv04.hr.domain.country.controller.model.CountryImageInput;
 import com.rgv04.hr.domain.country.controller.model.CountryImageModel;
+import com.rgv04.hr.domain.country.entity.Country;
 import com.rgv04.hr.domain.country.entity.CountryImage;
 import com.rgv04.hr.domain.country.service.CountryImageService;
+import com.rgv04.hr.domain.country.service.CountryService;
 import com.rgv04.hr.exception.EntityNotFoundException;
 import com.rgv04.hr.storage.StorageService;
 import com.rgv04.hr.storage.StorageService.RecoveredImage;
@@ -31,6 +42,8 @@ public class CountryImageController {
     private final StorageService countryStorageService;
 
     private final CountryImageService countryImageService;
+
+    private final CountryService countryService;
 
     private final CountryImageAssembler countryImageAssembler;
 
@@ -77,8 +90,26 @@ public class CountryImageController {
         return ResponseEntity.ok(countryImageAssembler.toModel(countryImage));
     }
 
-    @PutMapping
-    public ResponseEntity<?> saveImg() {
-        return ResponseEntity.ok("ok");
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<CountryImageModel> updateImg(@PathVariable String countryId, @Valid CountryImageInput input,
+            @RequestPart(required = true) MultipartFile file)
+            throws IOException {
+        Country country = countryService.findById(countryId);
+        CountryImage countryImage = new CountryImage();
+        countryImage.setId(countryId);
+        countryImage.setCountry(country);
+        countryImage.setContentType(file.getContentType());
+        countryImage.setDescription(input.getDescription());
+        countryImage.setSize(file.getSize());
+        countryImage.setFileName(file.getOriginalFilename());
+        CountryImage countrySave = countryImageService.save(countryImage, file.getInputStream());
+        return ResponseEntity.ok(countryImageAssembler.toModel(countrySave));
     }
+
+    @DeleteMapping
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteImage(@PathVariable String countryId) {
+		this.countryImageService.deleteImage(countryId);
+	}
+	    
 }

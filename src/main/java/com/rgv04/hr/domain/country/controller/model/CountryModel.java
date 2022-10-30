@@ -17,7 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Relation(collectionRelation = "countries")
-public class CountryModel extends RepresentationModel<RegionModel> {
+public class CountryModel extends RepresentationModel<CountryModel> {
 
 	private String id;
 

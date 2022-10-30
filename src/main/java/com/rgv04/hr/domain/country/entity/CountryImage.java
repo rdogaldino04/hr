@@ -1,5 +1,6 @@
 package com.rgv04.hr.domain.country.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class CountryImage {
     @Column(name = "COUNTRY_ID")
     private String id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId(value = "COUNTRY_ID")
     @JoinColumn(name = "COUNTRY_ID")
     private Country country;
