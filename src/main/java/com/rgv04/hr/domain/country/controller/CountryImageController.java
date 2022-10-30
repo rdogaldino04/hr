@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rgv04.hr.domain.country.controller.assembler.CountryImageAssembler;
+import com.rgv04.hr.domain.country.controller.model.CountryImageModel;
 import com.rgv04.hr.domain.country.entity.CountryImage;
 import com.rgv04.hr.domain.country.service.CountryImageService;
 import com.rgv04.hr.exception.EntityNotFoundException;
@@ -22,12 +25,14 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/countries/{countryId}/image")
+@RequestMapping("api/countries/{countryId}/images")
 public class CountryImageController {
 
     private final StorageService countryStorageService;
 
     private final CountryImageService countryImageService;
+
+    private final CountryImageAssembler countryImageAssembler;
 
     @GetMapping(produces = MediaType.ALL_VALUE)
     public ResponseEntity<?> getImage(@PathVariable String countryId, @RequestHeader(name = "accept") String acceptHeader)
@@ -66,4 +71,14 @@ public class CountryImageController {
         }
     }
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/info")
+    public ResponseEntity<CountryImageModel> getImageInfomation(@PathVariable String countryId) {
+        CountryImage countryImage = countryImageService.findById(countryId);
+        return ResponseEntity.ok(countryImageAssembler.toModel(countryImage));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> saveImg() {
+        return ResponseEntity.ok("ok");
+    }
 }
