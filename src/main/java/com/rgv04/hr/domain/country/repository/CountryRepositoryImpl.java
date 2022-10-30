@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import com.rgv04.hr.domain.country.CountryFilter;
 import com.rgv04.hr.domain.country.entity.Country;
 import com.rgv04.hr.domain.country.entity.CountryImage;
+import com.rgv04.hr.domain.country.entity.filter.CountryFilter;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country;
+package com.rgv04.hr.domain.country.entity.specs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
 import com.rgv04.hr.domain.country.entity.Country;
+import com.rgv04.hr.domain.country.entity.filter.CountryFilter;
 
 import lombok.extern.slf4j.Slf4j;
 

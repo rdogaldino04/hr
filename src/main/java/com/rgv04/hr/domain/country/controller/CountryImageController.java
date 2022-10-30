@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rgv04.hr.domain.country.controller.assembler.CountryImageAssembler;
-import com.rgv04.hr.domain.country.controller.model.CountryImageInput;
+import com.rgv04.hr.domain.country.controller.input.CountryImageInput;
 import com.rgv04.hr.domain.country.controller.model.CountryImageModel;
 import com.rgv04.hr.domain.country.entity.Country;
 import com.rgv04.hr.domain.country.entity.CountryImage;

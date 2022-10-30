@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.controller.model;
+package com.rgv04.hr.domain.country.controller.input;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
