@@ -10,13 +10,17 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +31,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rgv04.hr.security.controller.model.UserInput;
+import com.rgv04.hr.security.controller.model.UserModel;
 import com.rgv04.hr.security.model.Role;
 import com.rgv04.hr.security.model.User;
 import com.rgv04.hr.security.service.UserService;
@@ -41,6 +47,10 @@ public class UserController {
 
     private final UserService userService;
 
+    private final UserModelAssembler userModelAssembler;
+    
+	private final ModelMapper modelMapper;
+
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
@@ -50,6 +60,15 @@ public class UserController {
     public ResponseEntity<User> saveUsers(@RequestBody User user) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users").toString());
         return ResponseEntity.created(uri).body(userService.saveUser(user));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<UserModel> update(@PathVariable Long id, @RequestBody @Valid UserInput userInput) {
+        User currentUser = userService.getUserById(id);
+        modelMapper.map(userInput, currentUser);
+        return ResponseEntity
+                .ok()
+                .body(userModelAssembler.toModel(userService.saveUser(currentUser)));
     }
 
     @PostMapping("roles")

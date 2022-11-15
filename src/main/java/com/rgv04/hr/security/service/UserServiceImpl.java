@@ -3,6 +3,7 @@ package com.rgv04.hr.security.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.rgv04.hr.exception.BusinessException;
 import com.rgv04.hr.security.model.Role;
 import com.rgv04.hr.security.model.User;
 import com.rgv04.hr.security.repository.RoleRepository;
@@ -40,8 +42,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         log.info("Saving user {}", user.getName());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        if (user.isNew())
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        
+        userRepository.detach(user);
+        Optional<User> userExisting = userRepository.findByUsername(user.getUsername());
+        if (userExisting.isPresent() && !userExisting.get().equals(user)) {
+            throw new BusinessException(
+                String.format("There is already a registered user with the username %s", user.getUsername())
+            );
+        }
+        return userRepository.save(user);        
     }
 
     @Override
@@ -51,14 +62,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void addRoleToUser(String username, String roleName) {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username).get();
         Role role = roleRepository.findByName(roleName);
         user.getRoles().add(role);
     }
 
     @Override
     public User getUser(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username).get();
     }
 
     @Override
@@ -68,7 +79,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username).get();
         if (user == null) {
             log.error("User not found in the database");
             throw new UsernameNotFoundException("User not found in the database");
@@ -80,6 +91,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         });
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository
+            .findById(id)
+            .orElseThrow(() -> new UserNotFoundException(id));
     }
 
 }
