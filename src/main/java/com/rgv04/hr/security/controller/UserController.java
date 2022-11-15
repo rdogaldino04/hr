@@ -33,6 +33,7 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rgv04.hr.security.controller.model.UserInput;
 import com.rgv04.hr.security.controller.model.UserModel;
+import com.rgv04.hr.security.controller.model.UserWithPasswordInput;
 import com.rgv04.hr.security.model.Role;
 import com.rgv04.hr.security.model.User;
 import com.rgv04.hr.security.service.UserService;
@@ -57,9 +58,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> saveUsers(@RequestBody User user) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users").toString());
-        return ResponseEntity.created(uri).body(userService.saveUser(user));
+    public ResponseEntity<UserModel> save(@RequestBody @Valid UserWithPasswordInput userInput) {
+        User user = new User();
+        modelMapper.map(userInput, user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userModelAssembler.toModel(userService.save(user)));
     }
 
     @PutMapping("{id}")
@@ -68,7 +70,7 @@ public class UserController {
         modelMapper.map(userInput, currentUser);
         return ResponseEntity
                 .ok()
-                .body(userModelAssembler.toModel(userService.saveUser(currentUser)));
+                .body(userModelAssembler.toModel(userService.save(currentUser)));
     }
 
     @PostMapping("roles")

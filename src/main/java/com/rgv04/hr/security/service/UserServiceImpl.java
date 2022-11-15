@@ -40,14 +40,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User saveUser(User user) {
+    public User save(User user) {
         log.info("Saving user {}", user.getName());
         if (user.isNew())
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         
         userRepository.detach(user);
         Optional<User> userExisting = userRepository.findByUsername(user.getUsername());
-        if (userExisting.isPresent() && !userExisting.get().equals(user)) {
+        boolean exist = userExisting.isPresent() && !userExisting.get().equals(user);
+        if (exist) {
             throw new BusinessException(
                 String.format("There is already a registered user with the username %s", user.getUsername())
             );

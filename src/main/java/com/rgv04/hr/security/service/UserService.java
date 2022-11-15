@@ -7,7 +7,7 @@ import com.rgv04.hr.security.model.User;
 
 public interface UserService {
 
-    User saveUser(User user);
+    User save(User user);
 
     Role saveRole(Role role);
 
