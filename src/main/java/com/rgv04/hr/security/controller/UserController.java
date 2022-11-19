@@ -17,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,9 @@ import com.rgv04.hr.security.model.Role;
 import com.rgv04.hr.security.model.User;
 import com.rgv04.hr.security.service.UserService;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -122,10 +125,26 @@ public class UserController {
         }
     }
 
+    @GetMapping("current")
+    public ResponseEntity<UserCurrentModel> getUserCurrent(Authentication authentication) {        
+        List<String> roleNames = authentication.getAuthorities().stream().map(authorities -> authorities.getAuthority()).collect(Collectors.toList());
+        return ResponseEntity.ok(UserCurrentModel.builder()
+            .username(authentication.getName())
+            .roleNames(roleNames)
+            .build());
+    }
+
 }
 
 @Data
 class RoleToUserForm {
     private String username;
     private String roleName;
+}
+
+@Builder
+@Getter
+class UserCurrentModel {
+    private String username;
+    private List<String> roleNames;
 }
