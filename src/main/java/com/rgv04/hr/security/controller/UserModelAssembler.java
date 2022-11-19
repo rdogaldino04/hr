@@ -2,6 +2,7 @@ package com.rgv04.hr.security.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,11 @@ public class UserModelAssembler extends RepresentationModelAssemblerSupport<User
     
     public UserModelAssembler() {
         super(UserController.class, UserModel.class);
+    }
+
+    @Override
+    public CollectionModel<UserModel> toCollectionModel(Iterable<? extends User> entities) {        
+        return super.toCollectionModel(entities);
     }
 
     @Override

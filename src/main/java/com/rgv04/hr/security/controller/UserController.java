@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -56,8 +57,8 @@ public class UserController {
 	private final ModelMapper modelMapper;
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
+    public ResponseEntity<CollectionModel<UserModel>> getUsers() {
+        return ResponseEntity.ok(userModelAssembler.toCollectionModel(userService.getUsers()));
     }
 
     @PostMapping
