@@ -135,6 +135,11 @@ public class UserController {
             .build());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<UserModel> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(this.userModelAssembler.toModel(this.userService.getUserById(id)));
+    }
+
 }
 
 @Data
