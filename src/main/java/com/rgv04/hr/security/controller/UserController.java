@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.hateoas.CollectionModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,6 +41,7 @@ import com.rgv04.hr.security.controller.model.UserModel;
 import com.rgv04.hr.security.controller.model.UserWithPasswordInput;
 import com.rgv04.hr.security.model.Role;
 import com.rgv04.hr.security.model.User;
+import com.rgv04.hr.security.repository.UserRepository;
 import com.rgv04.hr.security.service.UserService;
 
 import lombok.Builder;
@@ -53,11 +57,20 @@ public class UserController {
     private final UserService userService;
 
     private final UserModelAssembler userModelAssembler;
-    
-	private final ModelMapper modelMapper;
+
+    private final ModelMapper modelMapper;
+
+    private final UserRepository userRepository;
+
+    private final PagedResourcesAssembler<User> pagedResourcesAssembler;
 
     @GetMapping
-    public ResponseEntity<CollectionModel<UserModel>> getUsers() {
+    public ResponseEntity<?> getUsers(boolean isPagination, @PageableDefault(size = 2) Pageable pageable) {
+        if (isPagination) {
+            Page<User> userPage = userRepository.findAll(pageable);
+            userPage = new PageWrapper<>(userPage, pageable);
+            return ResponseEntity.ok(pagedResourcesAssembler.toModel(userPage, userModelAssembler));
+        }
         return ResponseEntity.ok(userModelAssembler.toCollectionModel(userService.getUsers()));
     }
 
@@ -127,12 +140,13 @@ public class UserController {
     }
 
     @GetMapping("current")
-    public ResponseEntity<UserCurrentModel> getUserCurrent(Authentication authentication) {        
-        List<String> roleNames = authentication.getAuthorities().stream().map(authorities -> authorities.getAuthority()).collect(Collectors.toList());
+    public ResponseEntity<UserCurrentModel> getUserCurrent(Authentication authentication) {
+        List<String> roleNames = authentication.getAuthorities().stream().map(authorities -> authorities.getAuthority())
+                .collect(Collectors.toList());
         return ResponseEntity.ok(UserCurrentModel.builder()
-            .username(authentication.getName())
-            .roleNames(roleNames)
-            .build());
+                .username(authentication.getName())
+                .roleNames(roleNames)
+                .build());
     }
 
     @GetMapping("{id}")
