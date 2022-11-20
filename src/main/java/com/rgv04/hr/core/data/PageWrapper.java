@@ -1,4 +1,4 @@
-package com.rgv04.hr.security.controller;
+package com.rgv04.hr.core.data;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
