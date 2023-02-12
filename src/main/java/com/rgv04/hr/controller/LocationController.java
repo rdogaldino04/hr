@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.location;
+package com.rgv04.hr.controller;
 
 import java.util.List;
 
@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.rgv04.hr.domain.location.Location;
+import com.rgv04.hr.domain.location.LocationAssembler;
+import com.rgv04.hr.domain.location.LocationFilter;
+import com.rgv04.hr.domain.location.LocationModel;
+import com.rgv04.hr.domain.location.LocationService;
 
 @RestController
 @RequestMapping("api/locations")

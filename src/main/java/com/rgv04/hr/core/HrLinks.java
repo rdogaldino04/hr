@@ -6,7 +6,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.domain.jobhistory.JobHistoryController;
+import com.rgv04.hr.controller.JobHistoryController;
 
 @Component
 public class HrLinks {

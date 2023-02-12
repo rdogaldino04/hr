@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.EmployeeController;
+
 @Component
 public class EmployeeManagerModelAssembler extends RepresentationModelAssemblerSupport<Employee, EmployeeManagerModel> {
 

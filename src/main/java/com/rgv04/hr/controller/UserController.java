@@ -1,4 +1,4 @@
-package com.rgv04.hr.security.controller;
+package com.rgv04.hr.controller;
 
 import java.io.IOException;
 import java.net.URI;
@@ -37,6 +37,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rgv04.hr.core.data.PageWrapper;
+import com.rgv04.hr.security.controller.UserModelAssembler;
 import com.rgv04.hr.security.controller.model.UserInput;
 import com.rgv04.hr.security.controller.model.UserModel;
 import com.rgv04.hr.security.controller.model.UserWithPasswordInput;

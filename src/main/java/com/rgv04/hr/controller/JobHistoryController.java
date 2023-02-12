@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.jobhistory;
+package com.rgv04.hr.controller;
 
 import java.util.List;
 
@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.rgv04.hr.domain.jobhistory.JobHistory;
+import com.rgv04.hr.domain.jobhistory.JobHistoryModel;
+import com.rgv04.hr.domain.jobhistory.JobHistoryModelAssembler;
+import com.rgv04.hr.domain.jobhistory.JobHistoryService;
 
 import lombok.RequiredArgsConstructor;
 

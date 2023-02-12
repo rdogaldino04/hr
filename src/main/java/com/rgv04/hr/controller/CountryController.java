@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.controller;
+package com.rgv04.hr.controller;
 
 import java.util.List;
 

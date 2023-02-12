@@ -6,6 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.UserController;
 import com.rgv04.hr.security.controller.model.UserModel;
 import com.rgv04.hr.security.model.User;
 

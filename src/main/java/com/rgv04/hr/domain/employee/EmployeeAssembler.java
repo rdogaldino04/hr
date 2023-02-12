@@ -6,6 +6,8 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import com.rgv04.hr.controller.EmployeeController;
+
 @Component
 public class EmployeeAssembler extends RepresentationModelAssemblerSupport<Employee, EmployeeModel> {
 
