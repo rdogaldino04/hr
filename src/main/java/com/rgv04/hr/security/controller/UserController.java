@@ -68,7 +68,7 @@ public class UserController {
     private final PagedResourcesAssembler<User> pagedResourcesAssembler;
 
     @GetMapping
-    public ResponseEntity<?> getUsers(UserFilter userFilter, boolean isPagination, @PageableDefault(size = 2) Pageable pageable) {
+    public ResponseEntity<?> getUsers(UserFilter userFilter, boolean isPagination, @PageableDefault(size = 6) Pageable pageable) {
         if (isPagination) {
             Page<User> userPage = userRepository.findAll(UserSpecs.usingFilter(userFilter), pageable);
             userPage = new PageWrapper<>(userPage, pageable);
