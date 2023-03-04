@@ -21,13 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rgv04.hr.domain.assembler.CountryImageAssembler;
 import com.rgv04.hr.domain.dto.CountryImageInput;
 import com.rgv04.hr.domain.dto.CountryImageModel;
-import com.rgv04.hr.domain.model.Country;
-import com.rgv04.hr.domain.model.CountryImage;
 import com.rgv04.hr.domain.service.CountryImageService;
-import com.rgv04.hr.domain.service.CountryService;
 import com.rgv04.hr.exception.EntityNotFoundException;
 import com.rgv04.hr.storage.StorageService;
 import com.rgv04.hr.storage.StorageService.RecoveredImage;
@@ -43,19 +39,15 @@ public class CountryImageController {
 
     private final CountryImageService countryImageService;
 
-    private final CountryService countryService;
-
-    private final CountryImageAssembler countryImageAssembler;
-
     @GetMapping(produces = MediaType.ALL_VALUE)
     public ResponseEntity<?> getImage(@PathVariable String countryId, @RequestHeader(name = "accept") String acceptHeader)
             throws HttpMediaTypeNotAcceptableException {
         try {
-            CountryImage countryImage = countryImageService.findById(countryId);
-            MediaType mediaTypeImage = MediaType.parseMediaType(countryImage.getContentType());
+            CountryImageModel countryImageModel = countryImageService.findById(countryId);
+            MediaType mediaTypeImage = MediaType.parseMediaType(countryImageModel.getContentType());
             List<MediaType> mediaTypesAccepted = MediaType.parseMediaTypes(acceptHeader);
             checkCompatibilityMediaType(mediaTypeImage, mediaTypesAccepted);
-            RecoveredImage recoveredImage = countryStorageService.recover(countryImage.getFileName());
+            RecoveredImage recoveredImage = countryStorageService.recover(countryImageModel.getFileName());
 
             if (recoveredImage.hasUrl()) {
                 // return ResponseEntity
@@ -86,8 +78,8 @@ public class CountryImageController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/info")
     public ResponseEntity<CountryImageModel> getImageInfomation(@PathVariable String countryId) {
-        CountryImage countryImage = countryImageService.findById(countryId);
-        return ResponseEntity.ok(countryImageAssembler.toModel(countryImage));
+        CountryImageModel countryImageModel = countryImageService.findById(countryId);
+        return ResponseEntity.ok(countryImageModel);
     }
 
     @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -95,7 +87,7 @@ public class CountryImageController {
             @RequestPart(required = true) MultipartFile file)
             throws IOException {
 
-        CountryImage countryImage = CountryImage.builder()
+        CountryImageModel countryImageModel = CountryImageModel.builder()
                 .id(countryId)
                 .contentType(file.getContentType())
                 .description(input.getDescription())
@@ -103,8 +95,8 @@ public class CountryImageController {
                 .fileName(file.getOriginalFilename())
                 .build();
 
-        CountryImage countrySave = countryImageService.save(countryImage, file.getInputStream());
-        return ResponseEntity.ok(countryImageAssembler.toModel(countrySave));
+        CountryImageModel countrySave = countryImageService.save(countryImageModel, file.getInputStream());
+        return ResponseEntity.ok(countrySave);
     }
 
     @DeleteMapping

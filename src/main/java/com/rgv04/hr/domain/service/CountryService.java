@@ -31,11 +31,14 @@ public class CountryService {
 		return this.countryRepository.findByRegion(region);
 	}
 
-	public CountryModel findById(String id) {
-		return this.countryAssembler.toModel(
-				countryRepository.findById(id)
-						.orElseThrow(() -> new CountryNotFoundException(
-								String.format(THERE_IS_NO_REGISTRATION_OF_COUNTRY_WITH_CODE, id))));
+	public Country findById(String id) {
+		return countryRepository.findById(id)
+				.orElseThrow(() -> new CountryNotFoundException(
+						String.format(THERE_IS_NO_REGISTRATION_OF_COUNTRY_WITH_CODE, id)));
+	}
+
+	public CountryModel findByIdDTO(String id) {
+		return this.countryAssembler.toModel(this.findById(id));
 	}
 
     public CollectionModel<CountryModel> listByFilter(CountryFilter countryFilter) {

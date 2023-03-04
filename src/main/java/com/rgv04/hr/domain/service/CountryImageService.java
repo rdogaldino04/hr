@@ -8,8 +8,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rgv04.hr.domain.assembler.CountryAssembler;
-import com.rgv04.hr.domain.assembler.CountryInputDisassembler;
+import com.rgv04.hr.domain.assembler.CountryImageAssembler;
+import com.rgv04.hr.domain.assembler.CountryImageDisassembler;
+import com.rgv04.hr.domain.dto.CountryImageModel;
 import com.rgv04.hr.domain.exception.CountryNotFoundException;
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
@@ -30,16 +31,20 @@ public class CountryImageService {
     private CountryService countryService;
 
     @Autowired
-    private CountryInputDisassembler countryInputDisassembler;
+    private CountryImageAssembler countryImageAssembler;
 
-    public CountryImage findById(String countryId) {
-        return countryRepository.findImageById(countryId)
-                .orElseThrow(() -> new CountryNotFoundException(countryId));
+    @Autowired
+    private CountryImageDisassembler countryImageDisassembler;
+
+    public CountryImageModel findById(String countryId) {
+        return countryImageAssembler.toModel(countryRepository.findImageById(countryId)
+                .orElseThrow(() -> new CountryNotFoundException(countryId)));
     }
 
     @Transactional
-    public CountryImage save(CountryImage countryImage, InputStream inputStream) {
-        Country country = countryInputDisassembler.toDomainObject(countryService.findById(countryImage.getId()));
+    public CountryImageModel save(CountryImageModel countryImageModel, InputStream inputStream) {
+        Country country = countryService.findById(countryImageModel.getId());
+        CountryImage countryImage = this.countryImageDisassembler.toDomainObject(countryImageModel);
         countryImage.setCountry(country);
         String countryId = countryImage.getId();
         String fileNameNew = storageService.generateFileName(countryImage.getFileName());
@@ -57,12 +62,13 @@ public class CountryImageService {
                 .build();
 
         storageService.replace(existingNameFile, novaFoto);
-        return countryImage;
+        return this.countryImageAssembler.toModel(countryImage);
     }
 
     @Transactional
     public void deleteImage(String countryId) {
-        CountryImage countryImage = this.findById(countryId);
+        CountryImage countryImage = countryRepository.findImageById(countryId)
+                .orElseThrow(() -> new CountryNotFoundException(countryId));
         countryRepository.deleteImageById(countryImage.getId());
         countryRepository.flush();
         this.storageService.remove(countryImage.getFileName());

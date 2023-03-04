@@ -18,7 +18,7 @@ public class CountryImageInput {
 
 	@NotNull
 	@FileSize(max = "500KB")
-	@FileContentType(allowed = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE })
+	@FileContentType(allowed = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE, "image/webp" })
 	private MultipartFile file;
 
 	@NotBlank

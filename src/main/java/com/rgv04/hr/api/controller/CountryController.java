@@ -28,7 +28,7 @@ public class CountryController {
 
 	@GetMapping("{id}")
 	public ResponseEntity<CountryModel> findById(@PathVariable String id) {
-		return ResponseEntity.ok(countryService.findById(id));
+		return ResponseEntity.ok(countryService.findByIdDTO(id));
 	}
 
 }
