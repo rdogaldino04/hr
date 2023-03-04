@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.region;
+package com.rgv04.hr.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.rgv04.hr.domain.model.Country;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +30,6 @@ public class Region {
 	private String name;
 
 	@OneToMany(mappedBy = "region")
-	private List<Country> countries = new ArrayList<Country>();
+	private List<Country> countries = new ArrayList<>();
 
 }

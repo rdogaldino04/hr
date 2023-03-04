@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.region;
+package com.rgv04.hr.domain.exception;
 
 import com.rgv04.hr.exception.EntityNotFoundException;
 

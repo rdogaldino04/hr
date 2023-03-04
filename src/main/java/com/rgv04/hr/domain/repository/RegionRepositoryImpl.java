@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.region;
+package com.rgv04.hr.domain.repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +10,9 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import com.rgv04.hr.domain.dto.RegionFilter;
+import com.rgv04.hr.domain.model.Region;
+
 @Repository
 public class RegionRepositoryImpl implements RegionRepositoryQueries {
 	
@@ -19,8 +22,8 @@ public class RegionRepositoryImpl implements RegionRepositoryQueries {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Region> listByFilter(RegionFilter filter) {
-		Map<String, Object> parametros = new HashMap<String, Object>();
-		StringBuffer sql = new StringBuffer();
+		Map<String, Object> parametros = new HashMap<>();
+		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT r FROM Region r WHERE 1=1 ");		
 		if (filter.getRegionId() != null) {
 			sql.append(" and r.id = :regionId ");
@@ -31,7 +34,8 @@ public class RegionRepositoryImpl implements RegionRepositoryQueries {
 			parametros.put("name", filter.getRegionName().concat("%"));
 		}		
 		Query query = manager.createQuery(sql.toString());
-		for (String key : parametros.keySet()) {
+		for (Map.Entry<String, Object> entry : parametros.entrySet()) {
+			String key = entry.getKey();
 			if (parametros.containsKey(key)) {
 				query.setParameter(key, parametros.get(key));				
 			}

@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.region.assembler;
+package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,8 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.api.controller.RegionController;
-import com.rgv04.hr.domain.region.Region;
-import com.rgv04.hr.domain.region.assembler.model.RegionModel;
+import com.rgv04.hr.domain.dto.RegionModel;
+import com.rgv04.hr.domain.model.Region;
 
 @Component
 public class RegionAssembler extends RepresentationModelAssemblerSupport<Region, RegionModel> {
@@ -22,8 +22,7 @@ public class RegionAssembler extends RepresentationModelAssemblerSupport<Region,
 
 	@Override
 	public CollectionModel<RegionModel> toCollectionModel(Iterable<? extends Region> entities) {
-		CollectionModel<RegionModel> collectionModel = super.toCollectionModel(entities);
-		return collectionModel;
+		return toCollectionModel(entities);
 	}
 
 	@Override

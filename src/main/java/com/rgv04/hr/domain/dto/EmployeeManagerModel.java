@@ -10,6 +10,7 @@ import com.rgv04.hr.domain.departament.DepartamentModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,9 +20,11 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Relation(collectionRelation = "employeeManagers")
 public class EmployeeManagerModel extends RepresentationModel<EmployeeManagerModel> {
 
+	@EqualsAndHashCode.Include
 	private Long id;
 
 	private String firstName;

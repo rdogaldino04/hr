@@ -26,7 +26,7 @@ public class EmployeeAssembler extends RepresentationModelAssemblerSupport<Emplo
 
 	@Override
 	public CollectionModel<EmployeeModel> toCollectionModel(Iterable<? extends Employee> entities) {
-		return super.toCollectionModel(entities);
+		return toCollectionModel(entities);
 	}
 
 	@Override

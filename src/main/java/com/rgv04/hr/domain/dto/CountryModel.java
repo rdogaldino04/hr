@@ -3,10 +3,9 @@ package com.rgv04.hr.domain.dto;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import com.rgv04.hr.domain.region.assembler.model.RegionModel;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,9 +15,11 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Relation(collectionRelation = "countries")
 public class CountryModel extends RepresentationModel<CountryModel> {
 
+	@EqualsAndHashCode.Include
 	private String id;
 
 	private String name;

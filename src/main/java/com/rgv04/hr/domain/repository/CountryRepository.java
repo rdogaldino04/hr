@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
-import com.rgv04.hr.domain.region.Region;
+import com.rgv04.hr.domain.model.Region;
 
 public interface CountryRepository
 		extends JpaRepository<Country, String>, JpaSpecificationExecutor<Country>, CountryRepositoryQueries {

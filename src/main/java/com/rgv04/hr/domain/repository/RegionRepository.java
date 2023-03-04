@@ -1,10 +1,12 @@
-package com.rgv04.hr.domain.region;
+package com.rgv04.hr.domain.repository;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.rgv04.hr.domain.model.Region;
 
 public interface RegionRepository extends JpaRepository<Region, Long>, RegionRepositoryQueries {
 

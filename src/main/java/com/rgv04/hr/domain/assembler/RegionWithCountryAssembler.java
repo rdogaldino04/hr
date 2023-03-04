@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.region.assembler;
+package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,8 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.api.controller.RegionController;
-import com.rgv04.hr.domain.region.Region;
-import com.rgv04.hr.domain.region.assembler.model.RegionWithCountryModel;
+import com.rgv04.hr.domain.dto.RegionWithCountryModel;
+import com.rgv04.hr.domain.model.Region;
 
 @Component
 public class RegionWithCountryAssembler extends RepresentationModelAssemblerSupport<Region, RegionWithCountryModel> {
