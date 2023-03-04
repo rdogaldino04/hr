@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rgv04.hr.domain.country.controller.assembler.CountryImageAssembler;
-import com.rgv04.hr.domain.country.controller.input.CountryImageInput;
-import com.rgv04.hr.domain.country.controller.model.CountryImageModel;
-import com.rgv04.hr.domain.country.entity.Country;
-import com.rgv04.hr.domain.country.entity.CountryImage;
-import com.rgv04.hr.domain.country.service.CountryImageService;
-import com.rgv04.hr.domain.country.service.CountryService;
+import com.rgv04.hr.domain.assembler.CountryImageAssembler;
+import com.rgv04.hr.domain.dto.CountryImageInput;
+import com.rgv04.hr.domain.dto.CountryImageModel;
+import com.rgv04.hr.domain.model.Country;
+import com.rgv04.hr.domain.model.CountryImage;
+import com.rgv04.hr.domain.service.CountryImageService;
+import com.rgv04.hr.domain.service.CountryService;
 import com.rgv04.hr.exception.EntityNotFoundException;
 import com.rgv04.hr.storage.StorageService;
 import com.rgv04.hr.storage.StorageService.RecoveredImage;
@@ -94,14 +94,15 @@ public class CountryImageController {
     public ResponseEntity<CountryImageModel> updateImg(@PathVariable String countryId, @Valid CountryImageInput input,
             @RequestPart(required = true) MultipartFile file)
             throws IOException {
-        Country country = countryService.findById(countryId);
-        CountryImage countryImage = new CountryImage();
-        countryImage.setId(countryId);
-        countryImage.setCountry(country);
-        countryImage.setContentType(file.getContentType());
-        countryImage.setDescription(input.getDescription());
-        countryImage.setSize(file.getSize());
-        countryImage.setFileName(file.getOriginalFilename());
+
+        CountryImage countryImage = CountryImage.builder()
+                .id(countryId)
+                .contentType(file.getContentType())
+                .description(input.getDescription())
+                .size(file.getSize())
+                .fileName(file.getOriginalFilename())
+                .build();
+
         CountryImage countrySave = countryImageService.save(countryImage, file.getInputStream());
         return ResponseEntity.ok(countryImageAssembler.toModel(countrySave));
     }

@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.entity;
+package com.rgv04.hr.domain.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,11 +10,13 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

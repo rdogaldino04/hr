@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.entity.filter;
+package com.rgv04.hr.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.repository;
+package com.rgv04.hr.domain.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.rgv04.hr.domain.country.entity.Country;
-import com.rgv04.hr.domain.country.entity.CountryImage;
+import com.rgv04.hr.domain.model.Country;
+import com.rgv04.hr.domain.model.CountryImage;
 import com.rgv04.hr.domain.region.Region;
 
 @Repository

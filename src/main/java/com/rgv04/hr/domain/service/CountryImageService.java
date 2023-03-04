@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.service;
+package com.rgv04.hr.domain.service;
 
 import java.io.InputStream;
 import java.util.Optional;
@@ -8,9 +8,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rgv04.hr.domain.country.entity.CountryImage;
-import com.rgv04.hr.domain.country.exception.CountryNotFoundException;
-import com.rgv04.hr.domain.country.repository.CountryRepository;
+import com.rgv04.hr.domain.assembler.CountryAssembler;
+import com.rgv04.hr.domain.assembler.CountryInputDisassembler;
+import com.rgv04.hr.domain.exception.CountryNotFoundException;
+import com.rgv04.hr.domain.model.Country;
+import com.rgv04.hr.domain.model.CountryImage;
+import com.rgv04.hr.domain.repository.CountryRepository;
 import com.rgv04.hr.storage.StorageService;
 import com.rgv04.hr.storage.StorageService.newImage;
 
@@ -23,6 +26,12 @@ public class CountryImageService {
     @Autowired
     private StorageService storageService;
 
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private CountryInputDisassembler countryInputDisassembler;
+
     public CountryImage findById(String countryId) {
         return countryRepository.findImageById(countryId)
                 .orElseThrow(() -> new CountryNotFoundException(countryId));
@@ -30,6 +39,8 @@ public class CountryImageService {
 
     @Transactional
     public CountryImage save(CountryImage countryImage, InputStream inputStream) {
+        Country country = countryInputDisassembler.toDomainObject(countryService.findById(countryImage.getId()));
+        countryImage.setCountry(country);
         String countryId = countryImage.getId();
         String fileNameNew = storageService.generateFileName(countryImage.getFileName());
         String existingNameFile = null;

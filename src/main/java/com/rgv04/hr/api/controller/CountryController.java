@@ -1,6 +1,4 @@
-package com.rgv04.hr.controller;
-
-import java.util.List;
+package com.rgv04.hr.api.controller;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.country.controller.assembler.CountryAssembler;
-import com.rgv04.hr.domain.country.controller.model.CountryModel;
-import com.rgv04.hr.domain.country.entity.Country;
-import com.rgv04.hr.domain.country.entity.filter.CountryFilter;
-import com.rgv04.hr.domain.country.service.CountryService;
+import com.rgv04.hr.domain.dto.CountryFilter;
+import com.rgv04.hr.domain.dto.CountryModel;
+import com.rgv04.hr.domain.service.CountryService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,18 +20,15 @@ public class CountryController {
 
 	private final CountryService countryService;
 
-	private final CountryAssembler countryAssembler;
-
 	@GetMapping
 	public ResponseEntity<CollectionModel<CountryModel>> listByFilter(CountryFilter countryFilter) {
-		List<Country> countries = this.countryService.listByFilter(countryFilter);
-		CollectionModel<CountryModel> collectionModel = this.countryAssembler.toCollectionModel(countries);
+		CollectionModel<CountryModel> collectionModel = this.countryService.listByFilter(countryFilter);
 		return ResponseEntity.ok(collectionModel);
 	}
 
 	@GetMapping("{id}")
 	public ResponseEntity<CountryModel> findById(@PathVariable String id) {
-		return ResponseEntity.ok(this.countryAssembler.toModel(countryService.findById(id)));
+		return ResponseEntity.ok(countryService.findById(id));
 	}
 
 }

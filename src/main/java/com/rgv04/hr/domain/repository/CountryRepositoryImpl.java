@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.repository;
+package com.rgv04.hr.domain.repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import com.rgv04.hr.domain.country.entity.Country;
-import com.rgv04.hr.domain.country.entity.CountryImage;
-import com.rgv04.hr.domain.country.entity.filter.CountryFilter;
+import com.rgv04.hr.domain.dto.CountryFilter;
+import com.rgv04.hr.domain.model.Country;
+import com.rgv04.hr.domain.model.CountryImage;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.country.entity.specs;
+package com.rgv04.hr.domain.specs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import javax.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import com.rgv04.hr.domain.country.entity.Country;
-import com.rgv04.hr.domain.country.entity.filter.CountryFilter;
+import com.rgv04.hr.domain.dto.CountryFilter;
+import com.rgv04.hr.domain.model.Country;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -3,7 +3,7 @@ package com.rgv04.hr.domain.location;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import com.rgv04.hr.domain.country.controller.model.CountryModel;
+import com.rgv04.hr.domain.dto.CountryModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

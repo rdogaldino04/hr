@@ -1,10 +1,10 @@
-package com.rgv04.hr.domain.country.repository;
+package com.rgv04.hr.domain.repository;
 
 import java.util.List;
 
-import com.rgv04.hr.domain.country.entity.Country;
-import com.rgv04.hr.domain.country.entity.CountryImage;
-import com.rgv04.hr.domain.country.entity.filter.CountryFilter;
+import com.rgv04.hr.domain.dto.CountryFilter;
+import com.rgv04.hr.domain.model.Country;
+import com.rgv04.hr.domain.model.CountryImage;
 
 public interface CountryRepositoryQueries {
 

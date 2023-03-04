@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.rgv04.hr.domain.country.entity.Country;
+import com.rgv04.hr.domain.model.Country;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

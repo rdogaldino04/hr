@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.hateoas.server.core.Relation;
 
-import com.rgv04.hr.domain.country.controller.model.CountryModel;
+import com.rgv04.hr.domain.dto.CountryModel;
 
 import lombok.Getter;
 import lombok.Setter;
