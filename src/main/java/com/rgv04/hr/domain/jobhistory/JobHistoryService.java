@@ -1,8 +1,8 @@
 package com.rgv04.hr.domain.jobhistory;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
 
 import com.rgv04.hr.exception.BusinessException;
@@ -15,14 +15,16 @@ public class JobHistoryService {
 
     private final JobHistoryRepository jobHistoryRepository;
 
-    public List<JobHistory> getAll() {
-        return this.jobHistoryRepository.getAll();
+    private final JobHistoryModelAssembler jobHistoryAssembler;
+
+    public CollectionModel<JobHistoryModel> getAll() {
+        return jobHistoryAssembler.toCollectionModel(this.jobHistoryRepository.getAll());
     }
-    
-    public JobHistory findById(Long employeeId, String startDate) {
+
+    public JobHistoryModel findById(Long employeeId, String startDate) {
         JobHistoryID jobHistoryPK = new JobHistoryID(employeeId, OffsetDateTime.parse(startDate));
-        return this.jobHistoryRepository.findById(jobHistoryPK)
-            .orElseThrow(() -> new BusinessException("Resource not found"));
+        return jobHistoryAssembler.toModel(this.jobHistoryRepository.findById(jobHistoryPK)
+                .orElseThrow(() -> new BusinessException("Resource not found")));
     }
-    
+
 }
