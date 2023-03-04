@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.location;
+package com.rgv04.hr.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,8 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.rgv04.hr.domain.model.Country;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.location.Location;
-import com.rgv04.hr.domain.location.LocationAssembler;
-import com.rgv04.hr.domain.location.LocationFilter;
-import com.rgv04.hr.domain.location.LocationModel;
-import com.rgv04.hr.domain.location.LocationService;
+import com.rgv04.hr.domain.assembler.LocationAssembler;
+import com.rgv04.hr.domain.dto.LocationFilter;
+import com.rgv04.hr.domain.dto.LocationModel;
+import com.rgv04.hr.domain.model.Location;
+import com.rgv04.hr.domain.service.LocationService;
 
 @RestController
 @RequestMapping("api/locations")

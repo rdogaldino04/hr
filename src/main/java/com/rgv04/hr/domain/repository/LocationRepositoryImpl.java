@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.location;
+package com.rgv04.hr.domain.repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +10,9 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
+
+import com.rgv04.hr.domain.dto.LocationFilter;
+import com.rgv04.hr.domain.model.Location;
 
 @Repository
 public class LocationRepositoryImpl implements LocationRepositoryQueries {

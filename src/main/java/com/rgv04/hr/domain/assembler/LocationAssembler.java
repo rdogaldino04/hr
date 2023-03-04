@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.location;
+package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,8 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.api.controller.LocationController;
+import com.rgv04.hr.domain.dto.LocationModel;
+import com.rgv04.hr.domain.model.Location;
 
 @Component
 public class LocationAssembler extends RepresentationModelAssemblerSupport<Location, LocationModel> {

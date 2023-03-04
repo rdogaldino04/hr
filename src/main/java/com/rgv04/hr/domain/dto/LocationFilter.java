@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.location;
+package com.rgv04.hr.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;
