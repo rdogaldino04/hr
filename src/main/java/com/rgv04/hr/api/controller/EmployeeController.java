@@ -42,9 +42,7 @@ public class EmployeeController {
 
 	@GetMapping("{id}")
 	public ResponseEntity<EmployeeModel> findById(@PathVariable Long id) {
-		Employee employee = employeeService.findById(id);
-		EmployeeModel employeeModel = employeeAssembler.toModel(employee);
-		return ResponseEntity.ok(employeeModel);
+		return ResponseEntity.ok(employeeService.findById(id));
 	}
 
 	@GetMapping("joined")
