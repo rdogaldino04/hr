@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.assembler.EmployeeAssembler;
 import com.rgv04.hr.domain.dto.EmployeeFilter;
 import com.rgv04.hr.domain.dto.EmployeeModel;
 import com.rgv04.hr.domain.dto.EmployeeOnlyFirstNameAndHireDate;
 import com.rgv04.hr.domain.dto.EmployeeSumary;
-import com.rgv04.hr.domain.model.Employee;
 import com.rgv04.hr.domain.repository.EmployeeRepository;
 import com.rgv04.hr.domain.service.EmployeeService;
 
@@ -31,13 +29,9 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-	@Autowired
-	private EmployeeAssembler employeeAssembler;
-
 	@GetMapping
 	public ResponseEntity<CollectionModel<EmployeeModel>> findAll() {
-		List<Employee> employees = employeeService.findAll();
-		return ResponseEntity.ok(employeeAssembler.toCollectionModel(employees));
+		return ResponseEntity.ok(employeeService.findAll());
 	}
 
 	@GetMapping("{id}")
