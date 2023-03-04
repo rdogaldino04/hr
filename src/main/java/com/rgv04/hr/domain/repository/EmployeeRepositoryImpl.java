@@ -18,7 +18,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepositoryQueries {
     public List<EmployeeOnlyFirstNameAndHireDate> listByJoinedYear(EmployeeFilter filter) {
         StringBuilder sql = 
             new StringBuilder("select ")
-                .append("new com.rgv04.hr.domain.employee.EmployeeOnlyFirstNameAndHireDate(e.firstName, e.hireDate) ")
+                .append("new com.rgv04.hr.domain.dto.EmployeeOnlyFirstNameAndHireDate(e.firstName, e.hireDate) ")
                 .append(" from Employee e ")
                 .append("where extract(year from e.hireDate) between :startYear and :endYear");
         TypedQuery<EmployeeOnlyFirstNameAndHireDate> createQuery = 
