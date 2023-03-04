@@ -51,25 +51,23 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             Authentication authentication) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-        String acess_token = JWT.create()
+        String acessToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 100 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles",
                         user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
-        String refresh_token = JWT.create()
+        String refreshToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles",
                         user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
-       /*  response.setHeader("acess_token", acess_token);
-        response.setHeader("refresh_token", refresh_token); */
-        Map<String, String> tokens = new HashMap<String, String>();
-        tokens.put("acess_token", acess_token);
-        tokens.put("refresh_token", refresh_token);
+        Map<String, String> tokens = new HashMap<>();
+        tokens.put("acess_token", acessToken);
+        tokens.put("refresh_token", refreshToken);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);
     }

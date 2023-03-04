@@ -1,11 +1,13 @@
-package com.rgv04.hr.domain.employee;
+package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.controller.EmployeeController;
+import com.rgv04.hr.api.controller.EmployeeController;
+import com.rgv04.hr.domain.dto.EmployeeManagerModel;
+import com.rgv04.hr.domain.model.Employee;
 
 @Component
 public class EmployeeManagerModelAssembler extends RepresentationModelAssemblerSupport<Employee, EmployeeManagerModel> {

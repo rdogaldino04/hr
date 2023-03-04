@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.employee;
+package com.rgv04.hr.domain.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;

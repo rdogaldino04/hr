@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.controller.CountryImageController;
+import com.rgv04.hr.api.controller.CountryImageController;
 import com.rgv04.hr.domain.dto.CountryImageModel;
 import com.rgv04.hr.domain.model.CountryImage;
 

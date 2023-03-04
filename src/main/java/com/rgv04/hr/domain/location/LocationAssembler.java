@@ -6,7 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.controller.LocationController;
+import com.rgv04.hr.api.controller.LocationController;
 
 @Component
 public class LocationAssembler extends RepresentationModelAssemblerSupport<Location, LocationModel> {

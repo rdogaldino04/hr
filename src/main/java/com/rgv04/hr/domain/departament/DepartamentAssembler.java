@@ -6,7 +6,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.controller.DepartamentController;
+import com.rgv04.hr.api.controller.DepartamentController;
 
 @Component
 public class DepartamentAssembler extends RepresentationModelAssemblerSupport<Departament, DepartamentModel> {

@@ -1,4 +1,4 @@
-package com.rgv04.hr.controller;
+package com.rgv04.hr.api.controller;
 
 import java.io.IOException;
 import java.net.URI;

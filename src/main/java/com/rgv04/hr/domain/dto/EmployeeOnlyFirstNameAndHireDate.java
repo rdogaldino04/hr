@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.employee;
+package com.rgv04.hr.domain.dto;
 
 import java.time.OffsetDateTime;
 

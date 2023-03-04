@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.rgv04.hr.controller.RegionController;
+import com.rgv04.hr.api.controller.RegionController;
 import com.rgv04.hr.domain.region.Region;
 import com.rgv04.hr.domain.region.assembler.model.RegionWithCountryModel;
 

@@ -1,4 +1,4 @@
-package com.rgv04.hr.controller;
+package com.rgv04.hr.api.controller;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.employee.Employee;
-import com.rgv04.hr.domain.employee.EmployeeAssembler;
-import com.rgv04.hr.domain.employee.EmployeeFilter;
-import com.rgv04.hr.domain.employee.EmployeeModel;
-import com.rgv04.hr.domain.employee.EmployeeOnlyFirstNameAndHireDate;
-import com.rgv04.hr.domain.employee.EmployeeRepository;
-import com.rgv04.hr.domain.employee.EmployeeService;
-import com.rgv04.hr.domain.employee.EmployeeSumary;
+import com.rgv04.hr.domain.assembler.EmployeeAssembler;
+import com.rgv04.hr.domain.dto.EmployeeFilter;
+import com.rgv04.hr.domain.dto.EmployeeModel;
+import com.rgv04.hr.domain.dto.EmployeeOnlyFirstNameAndHireDate;
+import com.rgv04.hr.domain.dto.EmployeeSumary;
+import com.rgv04.hr.domain.model.Employee;
+import com.rgv04.hr.domain.repository.EmployeeRepository;
+import com.rgv04.hr.domain.service.EmployeeService;
 
 @RestController
 @RequestMapping("api/employees")

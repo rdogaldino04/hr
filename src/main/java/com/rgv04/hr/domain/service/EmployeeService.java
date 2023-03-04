@@ -1,10 +1,12 @@
-package com.rgv04.hr.domain.employee;
+package com.rgv04.hr.domain.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rgv04.hr.domain.model.Employee;
+import com.rgv04.hr.domain.repository.EmployeeRepository;
 import com.rgv04.hr.exception.BusinessException;
 
 @Service

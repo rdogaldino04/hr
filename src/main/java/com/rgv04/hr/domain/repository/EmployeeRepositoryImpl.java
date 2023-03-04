@@ -1,10 +1,13 @@
-package com.rgv04.hr.domain.employee;
+package com.rgv04.hr.domain.repository;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import com.rgv04.hr.domain.dto.EmployeeFilter;
+import com.rgv04.hr.domain.dto.EmployeeOnlyFirstNameAndHireDate;
 
 public class EmployeeRepositoryImpl implements EmployeeRepositoryQueries {
 
