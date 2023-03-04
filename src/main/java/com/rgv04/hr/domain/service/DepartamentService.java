@@ -1,10 +1,10 @@
 package com.rgv04.hr.domain.service;
 
-import java.util.List;
-
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
 
-import com.rgv04.hr.domain.model.Departament;
+import com.rgv04.hr.domain.assembler.DepartamentAssembler;
+import com.rgv04.hr.domain.dto.DepartamentModel;
 import com.rgv04.hr.domain.repository.DepartamentRepository;
 import com.rgv04.hr.exception.BusinessException;
 
@@ -16,13 +16,15 @@ public class DepartamentService {
 
     private final DepartamentRepository departamentRepository;
 
-    public List<Departament> getAll() {
-        return this.departamentRepository.getAll();
+    private final DepartamentAssembler departamentAssembler;
+
+    public CollectionModel<DepartamentModel> getAll() {
+        return departamentAssembler.toCollectionModel(this.departamentRepository.getAll());
     }
 
-    public Departament getById(Long id) {
-        return this.departamentRepository.findById(id)
-                .orElseThrow(() -> new BusinessException("Entity not found"));
+    public DepartamentModel getById(Long id) {
+        return departamentAssembler.toModel(this.departamentRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("Entity not found")));
     }
 
 }
