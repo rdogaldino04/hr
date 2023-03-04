@@ -1,9 +1,7 @@
-package com.rgv04.hr.domain.departament;
+package com.rgv04.hr.domain.dto;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
-
-import com.rgv04.hr.domain.dto.LocationModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

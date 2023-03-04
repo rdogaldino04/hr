@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.rgv04.hr.domain.departament.Departament;
 import com.rgv04.hr.domain.job.model.Job;
 
 import lombok.AllArgsConstructor;

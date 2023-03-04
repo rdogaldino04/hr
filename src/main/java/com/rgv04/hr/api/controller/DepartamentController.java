@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.departament.Departament;
-import com.rgv04.hr.domain.departament.DepartamentAssembler;
-import com.rgv04.hr.domain.departament.DepartamentModel;
-import com.rgv04.hr.domain.departament.DepartamentService;
+import com.rgv04.hr.domain.assembler.DepartamentAssembler;
+import com.rgv04.hr.domain.dto.DepartamentModel;
+import com.rgv04.hr.domain.model.Departament;
+import com.rgv04.hr.domain.service.DepartamentService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,9 +1,11 @@
-package com.rgv04.hr.domain.departament;
+package com.rgv04.hr.domain.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.rgv04.hr.domain.model.Departament;
+import com.rgv04.hr.domain.repository.DepartamentRepository;
 import com.rgv04.hr.exception.BusinessException;
 
 import lombok.RequiredArgsConstructor;

@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.rgv04.hr.domain.departament.Departament;
 import com.rgv04.hr.domain.job.model.Job;
+import com.rgv04.hr.domain.model.Departament;
 
 import lombok.Data;
 

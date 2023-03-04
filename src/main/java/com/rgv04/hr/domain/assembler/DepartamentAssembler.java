@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.departament;
+package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +6,8 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 import com.rgv04.hr.api.controller.DepartamentController;
+import com.rgv04.hr.domain.dto.DepartamentModel;
+import com.rgv04.hr.domain.model.Departament;
 
 @Component
 public class DepartamentAssembler extends RepresentationModelAssemblerSupport<Departament, DepartamentModel> {
