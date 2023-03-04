@@ -2,7 +2,6 @@ package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +17,6 @@ public class LocationAssembler extends RepresentationModelAssemblerSupport<Locat
 
 	public LocationAssembler() {
 		super(LocationController.class, LocationModel.class);
-	}
-
-	@Override
-	public CollectionModel<LocationModel> toCollectionModel(Iterable<? extends Location> entities) {
-		CollectionModel<LocationModel> collectionModel = super.toCollectionModel(entities);
-		return collectionModel;
 	}
 
 	@Override

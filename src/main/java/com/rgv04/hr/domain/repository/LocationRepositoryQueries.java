@@ -7,6 +7,6 @@ import com.rgv04.hr.domain.model.Location;
 
 public interface LocationRepositoryQueries {
 
-	List<Location> ListByFilter(LocationFilter filter);
+	List<Location> listByFilter(LocationFilter filter);
 
 }

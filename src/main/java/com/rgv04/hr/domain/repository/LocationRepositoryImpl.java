@@ -21,9 +21,9 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 	private EntityManager manager;
 
 	@Override
-	public List<Location> ListByFilter(LocationFilter filter) {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		StringBuffer sql = new StringBuffer();
+	public List<Location> listByFilter(LocationFilter filter) {
+		Map<String, Object> parameters = new HashMap<>();
+		StringBuilder sql = new StringBuilder();
 		sql.append("select l from Location l ")
 				.append("join fetch l.country c ")
 				.append("join fetch c.region r ")
@@ -66,7 +66,8 @@ public class LocationRepositoryImpl implements LocationRepositoryQueries {
 
 		// @formatter:off
 		TypedQuery<Location> createQuery = manager.createQuery(sql.toString(), Location.class);
-		for (String key : parameters.keySet()) {
+		for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+			String key = entry.getKey();
 			if (parameters.containsKey(key)) {
 				createQuery.setParameter(key, parameters.get(key));				
 			}

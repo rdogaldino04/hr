@@ -20,7 +20,7 @@ public class LocationService {
 	private LocationAssembler locationAssembler;
 
 	public CollectionModel<LocationModel> listByFilter(LocationFilter filter) {
-		return locationAssembler.toCollectionModel(locationRepository.ListByFilter(filter));
+		return locationAssembler.toCollectionModel(locationRepository.listByFilter(filter));
 	}
 
 	public LocationModel findById(Long id) {
