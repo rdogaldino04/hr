@@ -196,7 +196,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<?> handleEntidadeNaoEncontrada(EntityNotFoundException ex, WebRequest request) {
+	public ResponseEntity<Object> handleEntidadeNaoEncontrada(EntityNotFoundException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		ProblemType problemType = ProblemType.RESOURCE_NOT_FOUND;
@@ -208,7 +208,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(EntityInUseException.class)
-	public ResponseEntity<?> handleEntidadeEmUso(EntityInUseException ex, WebRequest request) {
+	public ResponseEntity<Object> handleEntidadeEmUso(EntityInUseException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.CONFLICT;
 		ProblemType problemType = ProblemType.ENTITY_IN_USE;
@@ -220,7 +220,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(BusinessException.class)
-	public ResponseEntity<?> handleNegocio(BusinessException ex, WebRequest request) {
+	public ResponseEntity<Object> handleNegocio(BusinessException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		ProblemType problemType = ProblemType.BUSINESS_ERROR;
@@ -247,7 +247,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)
-	public ResponseEntity<?> handleEntidadeNaoEncontrada(AccessDeniedException ex, WebRequest request) {
+	public ResponseEntity<Object> handleEntidadeNaoEncontrada(AccessDeniedException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.FORBIDDEN;
 		ProblemType problemType = ProblemType.ACCESS_DENIED;
@@ -266,7 +266,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	private String joinPath(List<Reference> references) {
-		return references.stream().map(ref -> ref.getFieldName()).collect(Collectors.joining("."));
+		return references.stream().map(Reference::getFieldName).collect(Collectors.joining("."));
 	}
 
 }

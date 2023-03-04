@@ -7,6 +7,7 @@ import com.rgv04.hr.domain.location.LocationModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,9 +17,11 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Relation(collectionRelation = "departaments")
 public class DepartamentModel extends RepresentationModel<DepartamentModel> {
 
+    @EqualsAndHashCode.Include
     private Long id;
 
     private String name;

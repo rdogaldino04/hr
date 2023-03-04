@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import com.rgv04.hr.domain.assembler.CountryImageAssembler;
 import com.rgv04.hr.domain.assembler.CountryImageDisassembler;
 import com.rgv04.hr.domain.dto.CountryImageModel;
-import com.rgv04.hr.domain.exception.CountryNotFoundException;
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
 import com.rgv04.hr.domain.repository.CountryRepository;
+import com.rgv04.hr.exception.EntityNotFoundException;
 import com.rgv04.hr.storage.StorageService;
 import com.rgv04.hr.storage.StorageService.newImage;
 
@@ -38,7 +38,7 @@ public class CountryImageService {
 
     public CountryImageModel findById(String countryId) {
         return countryImageAssembler.toModel(countryRepository.findImageById(countryId)
-                .orElseThrow(() -> new CountryNotFoundException(countryId)));
+                .orElseThrow(() -> new EntityNotFoundException(countryId)));
     }
 
     @Transactional
@@ -68,7 +68,7 @@ public class CountryImageService {
     @Transactional
     public void deleteImage(String countryId) {
         CountryImage countryImage = countryRepository.findImageById(countryId)
-                .orElseThrow(() -> new CountryNotFoundException(countryId));
+                .orElseThrow(() -> new EntityNotFoundException(countryId));
         countryRepository.deleteImageById(countryImage.getId());
         countryRepository.flush();
         this.storageService.remove(countryImage.getFileName());

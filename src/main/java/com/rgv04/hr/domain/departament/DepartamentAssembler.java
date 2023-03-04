@@ -2,7 +2,6 @@ package com.rgv04.hr.domain.departament;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +15,6 @@ public class DepartamentAssembler extends RepresentationModelAssemblerSupport<De
 
     public DepartamentAssembler() {
         super(DepartamentController.class, DepartamentModel.class);
-    }
-
-    @Override
-    public CollectionModel<DepartamentModel> toCollectionModel(Iterable<? extends Departament> entities) {
-        return super.toCollectionModel(entities);
     }
 
     @Override
