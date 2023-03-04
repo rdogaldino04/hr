@@ -16,7 +16,6 @@ import com.rgv04.hr.domain.dto.EmployeeFilter;
 import com.rgv04.hr.domain.dto.EmployeeModel;
 import com.rgv04.hr.domain.dto.EmployeeOnlyFirstNameAndHireDate;
 import com.rgv04.hr.domain.dto.EmployeeSumary;
-import com.rgv04.hr.domain.repository.EmployeeRepository;
 import com.rgv04.hr.domain.service.EmployeeService;
 
 @RestController
@@ -25,9 +24,6 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-
-	@Autowired
-	private EmployeeRepository employeeRepository;
 
 	@GetMapping
 	public ResponseEntity<CollectionModel<EmployeeModel>> findAll() {
@@ -40,13 +36,13 @@ public class EmployeeController {
 	}
 
 	@GetMapping("joined")
-	public ResponseEntity<List<EmployeeOnlyFirstNameAndHireDate>> listByJoinedYear(@Valid EmployeeFilter filter) {		
-		return ResponseEntity.ok(employeeRepository.listByJoinedYear(filter));
+	public ResponseEntity<List<EmployeeOnlyFirstNameAndHireDate>> listByJoinedYear(@Valid EmployeeFilter filter) {
+		return ResponseEntity.ok(employeeService.listByJoinedYear(filter));
 	}
 
 	@GetMapping("{id}/summary")
-	public ResponseEntity<EmployeeSumary> listByIdSummary(@PathVariable Long id) {		
-		return ResponseEntity.ok(employeeRepository.listByIdSummary(id));
+	public ResponseEntity<EmployeeSumary> listByIdSummary(@PathVariable Long id) {
+		return ResponseEntity.ok(employeeService.listByIdSummary(id));
 	}
 
 }
