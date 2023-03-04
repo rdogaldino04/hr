@@ -6,13 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
 import com.rgv04.hr.domain.region.Region;
 
-@Repository
 public interface CountryRepository
 		extends JpaRepository<Country, String>, JpaSpecificationExecutor<Country>, CountryRepositoryQueries {
 

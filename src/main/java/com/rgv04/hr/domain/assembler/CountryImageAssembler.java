@@ -21,8 +21,7 @@ public class CountryImageAssembler extends RepresentationModelAssemblerSupport<C
 
     @Override
     public CountryImageModel toModel(CountryImage entity) {
-        CountryImageModel model = modelMapper.map(entity, CountryImageModel.class);
-		return model;
+        return modelMapper.map(entity, CountryImageModel.class);
     }
     
 }

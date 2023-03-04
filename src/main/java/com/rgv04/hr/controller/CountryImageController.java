@@ -40,7 +40,7 @@ public class CountryImageController {
     private final CountryImageService countryImageService;
 
     @GetMapping(produces = MediaType.ALL_VALUE)
-    public ResponseEntity<?> getImage(@PathVariable String countryId, @RequestHeader(name = "accept") String acceptHeader)
+    public ResponseEntity<InputStreamResource> getImage(@PathVariable String countryId, @RequestHeader(name = "accept") String acceptHeader)
             throws HttpMediaTypeNotAcceptableException {
         try {
             CountryImageModel countryImageModel = countryImageService.findById(countryId);
@@ -50,10 +50,6 @@ public class CountryImageController {
             RecoveredImage recoveredImage = countryStorageService.recover(countryImageModel.getFileName());
 
             if (recoveredImage.hasUrl()) {
-                // return ResponseEntity
-                // .status(HttpStatus.FOUND)
-                // .header(HttpHeaders.LOCATION, fotoRecuperada.getUrl())
-                // .build();
                 return ResponseEntity.notFound().build();
             } else {
                 return ResponseEntity.ok()
