@@ -1,12 +1,15 @@
 package com.rgv04.hr.domain.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rgv04.hr.domain.assembler.RegionAssembler;
+import com.rgv04.hr.domain.assembler.RegionWithCountryAssembler;
 import com.rgv04.hr.domain.dto.RegionFilter;
+import com.rgv04.hr.domain.dto.RegionModel;
+import com.rgv04.hr.domain.dto.RegionWithCountryModel;
 import com.rgv04.hr.domain.exception.RegionNotFoundException;
 import com.rgv04.hr.domain.model.Region;
 import com.rgv04.hr.domain.repository.RegionRepository;
@@ -19,25 +22,31 @@ public class RegionService {
 	@Autowired
 	private RegionRepository regionRepository;
 
-	public Region save(Region region) {
+	@Autowired
+	private RegionAssembler regionAssembler;
+
+	@Autowired
+	private RegionWithCountryAssembler regionWithCountryAssembler;
+
+	public RegionModel save(Region region) {
 		region.setId(null);
-		return this.regionRepository.save(region);
+		return this.regionAssembler.toModel(this.regionRepository.save(region));
 	}
 
-	public List<Region> listByFilter(RegionFilter filter) {
-		return this.regionRepository.listByFilter(filter);
+	public CollectionModel<RegionModel> listByFilter(RegionFilter filter) {
+		return this.regionAssembler.toCollectionModel(this.regionRepository.listByFilter(filter));
 	}
 
-	public Region findById(Long id) {
-		return this.regionRepository
+	public RegionModel findById(Long id) {
+		return this.regionAssembler.toModel(this.regionRepository
 				.findById(id)
-				.orElseThrow(() -> new RegionNotFoundException(id));
+				.orElseThrow(() -> new RegionNotFoundException(id)));
 	}
 
-	public Region countriesByRegionId(Long regionId) {		
-		return this.regionRepository
-			.countriesByRegionId(regionId)
-			.orElseThrow(() -> new BusinessException("resource not found"));
+	public RegionWithCountryModel countriesByRegionId(Long regionId) {
+		return this.regionWithCountryAssembler.toModel(this.regionRepository
+				.countriesByRegionId(regionId)
+				.orElseThrow(() -> new BusinessException("resource not found")));
 	}
 
 }
