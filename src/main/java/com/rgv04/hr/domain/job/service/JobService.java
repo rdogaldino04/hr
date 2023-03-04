@@ -1,10 +1,10 @@
 package com.rgv04.hr.domain.job.service;
 
-import java.util.List;
-
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
 
-import com.rgv04.hr.domain.job.model.Job;
+import com.rgv04.hr.domain.job.controller.assembler.JobAssembler;
+import com.rgv04.hr.domain.job.controller.model.JobModel;
 import com.rgv04.hr.domain.job.model.filter.JobFilter;
 import com.rgv04.hr.domain.job.repository.JobRepository;
 import com.rgv04.hr.domain.job.spec.JobSpecs;
@@ -18,13 +18,15 @@ public class JobService {
 
     private final JobRepository jobRepository;
 
-    public List<Job> findAll(JobFilter filter) {
-        return this.jobRepository.findAll(JobSpecs.getSpecs(filter));
+    private final JobAssembler jobAssembler;
+
+    public CollectionModel<JobModel> findAll(JobFilter filter) {
+        return jobAssembler.toCollectionModel(this.jobRepository.findAll(JobSpecs.getSpecs(filter)));
     }
 
-    public Job findById(String id) {
-        return this.jobRepository.findById(id)
-                .orElseThrow(() -> new BusinessException("Entity not found"));
+    public JobModel findById(String id) {
+        return jobAssembler.toModel(this.jobRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("Entity not found")));
     }
-    
+
 }
