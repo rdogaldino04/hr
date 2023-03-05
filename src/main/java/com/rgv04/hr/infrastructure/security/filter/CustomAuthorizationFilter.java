@@ -32,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomAuthorizationFilter extends OncePerRequestFilter {
 
+    private String secret = "secret";
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -42,15 +44,13 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
-                    Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+                    Algorithm algorithm = Algorithm.HMAC256(secret.getBytes());
                     JWTVerifier verifier = JWT.require(algorithm).build();
                     DecodedJWT decodedJWT = verifier.verify(token);
                     String username = decodedJWT.getSubject();
                     String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    stream(roles).forEach(role -> {
-                        authorities.add(new SimpleGrantedAuthority(role));
-                    });
+                    stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                             username, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -59,7 +59,6 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     log.error("Error loggin in: {}", e.getMessage());
                     response.setHeader("error", e.getMessage());
                     response.setStatus(FORBIDDEN.value());
-                    // response.sendError(FORBIDDEN.value());
                     Map<String, String> error = new HashMap<>();
                     error.put("error_message", e.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);

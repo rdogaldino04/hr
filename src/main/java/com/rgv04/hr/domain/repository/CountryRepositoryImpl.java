@@ -27,7 +27,7 @@ public class CountryRepositoryImpl implements CountryRepositoryQueries {
 
     @Override
     public List<Country> listByFilter(CountryFilter filter) {
-        Map<String, Object> parameters = new HashMap<String, Object>();
+        Map<String, Object> parameters = new HashMap<>();
         StringBuilder sql = new StringBuilder("select c from Country c left join fetch c.region r  ")
                 .append("where 1=1 ");
 

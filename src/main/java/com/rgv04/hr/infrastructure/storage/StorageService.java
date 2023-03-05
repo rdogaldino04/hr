@@ -10,11 +10,11 @@ public interface StorageService {
 
 	RecoveredImage recover(String fileName);
 
-	void store(newImage newImage);
+	void store(NewImage newImage);
 
 	void remove(String fileName);
 
-	default void replace(String fileNameOld, newImage newImage) {
+	default void replace(String fileNameOld, NewImage newImage) {
 		this.store(newImage);
 		if (fileNameOld != null) {
 			this.remove(fileNameOld);
@@ -27,7 +27,7 @@ public interface StorageService {
 
 	@Builder
 	@Getter
-	class newImage {
+	class NewImage {
 
 		private String fileName;
 		private String contentType;

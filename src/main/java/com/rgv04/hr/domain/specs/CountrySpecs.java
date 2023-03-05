@@ -16,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CountrySpecs {
 
+    private CountrySpecs() {}
+
     public static Specification<Country> getSpecs(CountryFilter countryFilter) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();

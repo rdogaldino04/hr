@@ -16,7 +16,7 @@ import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
 import com.rgv04.hr.domain.repository.CountryRepository;
 import com.rgv04.hr.infrastructure.storage.StorageService;
-import com.rgv04.hr.infrastructure.storage.StorageService.newImage;
+import com.rgv04.hr.infrastructure.storage.StorageService.NewImage;
 
 @Service
 public class CountryImageService {
@@ -56,7 +56,7 @@ public class CountryImageService {
         countryImage.setFileName(fileNameNew);
         countryImage = countryRepository.saveImage(countryImage);
         countryRepository.flush();
-        newImage novaFoto = newImage.builder()
+        NewImage novaFoto = NewImage.builder()
                 .fileName(countryImage.getFileName())
                 .inputStream(inputStream)
                 .build();

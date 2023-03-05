@@ -2,7 +2,6 @@ package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +17,6 @@ public class CountryAssembler extends RepresentationModelAssemblerSupport<Countr
 
 	public CountryAssembler() {
 		super(CountryController.class, CountryModel.class);
-	}
-
-	@Override
-	public CollectionModel<CountryModel> toCollectionModel(Iterable<? extends Country> entities) {
-		CollectionModel<CountryModel> collectionModel = super.toCollectionModel(entities);
-		return collectionModel;
 	}
 
 	@Override

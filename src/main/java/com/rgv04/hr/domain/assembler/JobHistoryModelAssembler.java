@@ -2,7 +2,6 @@ package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -23,12 +22,7 @@ public class JobHistoryModelAssembler extends RepresentationModelAssemblerSuppor
     public JobHistoryModelAssembler() {
         super(JobHistoryController.class, JobHistoryModel.class);
     }
-
-    @Override
-    public CollectionModel<JobHistoryModel> toCollectionModel(Iterable<? extends JobHistory> entities) {
-        return super.toCollectionModel(entities);
-    }
-
+    
     @Override
     public JobHistoryModel toModel(JobHistory entity) {
         JobHistoryModel model = createModelWithId(entity.getJobHistoryID().getEmployeeId(), entity);

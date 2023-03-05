@@ -11,7 +11,7 @@ import com.rgv04.hr.domain.dto.RegionFilter;
 import com.rgv04.hr.domain.dto.RegionModel;
 import com.rgv04.hr.domain.dto.RegionWithCountryModel;
 import com.rgv04.hr.domain.exception.BusinessException;
-import com.rgv04.hr.domain.exception.RegionNotFoundException;
+import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.model.Region;
 import com.rgv04.hr.domain.repository.RegionRepository;
 
@@ -40,7 +40,7 @@ public class RegionService {
 	public RegionModel findById(Long id) {
 		return this.regionAssembler.toModel(this.regionRepository
 				.findById(id)
-				.orElseThrow(() -> new RegionNotFoundException(id)));
+				.orElseThrow(() -> new EntityNotFoundException(String.format("There is no registration of region with code %d", id))));
 	}
 
 	public RegionWithCountryModel countriesByRegionId(Long regionId) {

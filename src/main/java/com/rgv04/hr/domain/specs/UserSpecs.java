@@ -13,6 +13,8 @@ import com.rgv04.hr.domain.model.User;
 
 public class UserSpecs {
 
+    private UserSpecs() {}
+
     public static Specification<User> usingFilter(UserFilter filter) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();

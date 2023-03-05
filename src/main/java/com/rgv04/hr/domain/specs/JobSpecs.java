@@ -15,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JobSpecs {
+
+    private JobSpecs() {}
     
     public static Specification<Job> getSpecs(JobFilter filter) {
         return (root, query, builder) -> {

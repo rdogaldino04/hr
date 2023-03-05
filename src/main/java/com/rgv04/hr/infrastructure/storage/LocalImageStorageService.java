@@ -16,11 +16,9 @@ public class LocalImageStorageService implements StorageService {
     public RecoveredImage recover(String fileName) {
         try {
             Path pathFile = getFilePath(fileName);
-            RecoveredImage recoveredImage = RecoveredImage.builder()
+            return RecoveredImage.builder()
                     .inputStream(Files.newInputStream(pathFile))
                     .build();
-
-            return recoveredImage;
         } catch (Exception e) {
             throw new StorageException("Could not recover file.", e);
         }
@@ -32,7 +30,7 @@ public class LocalImageStorageService implements StorageService {
     }
 
     @Override
-    public void store(newImage novaFoto) {
+    public void store(NewImage novaFoto) {
         try {
             Path arquivoPath = getFilePath(novaFoto.getFileName());
 

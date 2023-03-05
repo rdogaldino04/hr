@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.rgv04.hr.domain.exception.BusinessException;
-import com.rgv04.hr.domain.exception.UserNotFoundException;
+import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.model.Role;
 import com.rgv04.hr.domain.model.User;
 import com.rgv04.hr.domain.repository.RoleRepository;
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void addRoleToUser(String username, String roleName) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
         Role role = roleRepository.findByName(roleName);
         user.getRoles().add(role);
     }
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getUser(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
     @Override
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User getUserById(Long id) {
         return userRepository
             .findById(id)
-            .orElseThrow(() -> new UserNotFoundException(id));
+            .orElseThrow(() -> new EntityNotFoundException(String.format("There is no user account with code %d", id)));
     }
 
 }
