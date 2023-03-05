@@ -6,8 +6,6 @@ import java.time.OffsetDateTime;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import com.rgv04.hr.domain.job.controller.model.JobModel;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

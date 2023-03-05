@@ -6,8 +6,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.rgv04.hr.core.validation.FileContentType;
-import com.rgv04.hr.core.validation.FileSize;
+import com.rgv04.hr.infrastructure.core.validation.FileContentType;
+import com.rgv04.hr.infrastructure.core.validation.FileSize;
 
 import lombok.Getter;
 import lombok.Setter;

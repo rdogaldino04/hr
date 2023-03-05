@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.rgv04.hr.domain.assembler.LocationAssembler;
 import com.rgv04.hr.domain.dto.LocationFilter;
 import com.rgv04.hr.domain.dto.LocationModel;
+import com.rgv04.hr.domain.exception.BusinessException;
 import com.rgv04.hr.domain.repository.LocationRepository;
-import com.rgv04.hr.exception.BusinessException;
 
 @Service
 public class LocationService {

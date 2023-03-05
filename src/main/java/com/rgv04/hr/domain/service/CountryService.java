@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.rgv04.hr.domain.assembler.CountryAssembler;
 import com.rgv04.hr.domain.dto.CountryFilter;
 import com.rgv04.hr.domain.dto.CountryModel;
+import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.Region;
 import com.rgv04.hr.domain.repository.CountryRepository;
-import com.rgv04.hr.exception.EntityNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 

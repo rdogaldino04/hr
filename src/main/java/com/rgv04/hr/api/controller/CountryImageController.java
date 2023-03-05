@@ -23,10 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.rgv04.hr.domain.dto.CountryImageInput;
 import com.rgv04.hr.domain.dto.CountryImageModel;
+import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.service.CountryImageService;
-import com.rgv04.hr.exception.EntityNotFoundException;
-import com.rgv04.hr.storage.StorageService;
-import com.rgv04.hr.storage.StorageService.RecoveredImage;
+import com.rgv04.hr.infrastructure.storage.StorageService;
+import com.rgv04.hr.infrastructure.storage.StorageService.RecoveredImage;
 
 import lombok.RequiredArgsConstructor;
 

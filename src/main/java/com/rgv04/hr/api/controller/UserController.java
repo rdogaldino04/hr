@@ -36,17 +36,17 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rgv04.hr.core.data.PageWrapper;
-import com.rgv04.hr.security.controller.UserModelAssembler;
-import com.rgv04.hr.security.controller.model.UserInput;
-import com.rgv04.hr.security.controller.model.UserModel;
-import com.rgv04.hr.security.controller.model.UserWithPasswordInput;
-import com.rgv04.hr.security.model.Role;
-import com.rgv04.hr.security.model.User;
-import com.rgv04.hr.security.model.filter.UserFilter;
-import com.rgv04.hr.security.model.specs.UserSpecs;
-import com.rgv04.hr.security.repository.UserRepository;
-import com.rgv04.hr.security.service.UserService;
+import com.rgv04.hr.domain.assembler.UserModelAssembler;
+import com.rgv04.hr.domain.dto.UserFilter;
+import com.rgv04.hr.domain.dto.UserInput;
+import com.rgv04.hr.domain.dto.UserModel;
+import com.rgv04.hr.domain.dto.UserWithPasswordInput;
+import com.rgv04.hr.domain.model.Role;
+import com.rgv04.hr.domain.model.User;
+import com.rgv04.hr.domain.repository.UserRepository;
+import com.rgv04.hr.domain.service.UserService;
+import com.rgv04.hr.domain.specs.UserSpecs;
+import com.rgv04.hr.infrastructure.core.data.PageWrapper;
 
 import lombok.Builder;
 import lombok.Data;
@@ -69,7 +69,7 @@ public class UserController {
     private final PagedResourcesAssembler<User> pagedResourcesAssembler;
 
     @GetMapping
-    public ResponseEntity<?> getUsers(UserFilter userFilter, boolean isPagination, @PageableDefault(size = 6) Pageable pageable) {
+    public ResponseEntity<Object> getUsers(UserFilter userFilter, boolean isPagination, @PageableDefault(size = 6) Pageable pageable) {
         if (isPagination) {
             Page<User> userPage = userRepository.findAll(UserSpecs.usingFilter(userFilter), pageable);
             userPage = new PageWrapper<>(userPage, pageable);

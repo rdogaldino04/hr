@@ -10,10 +10,10 @@ import com.rgv04.hr.domain.assembler.RegionWithCountryAssembler;
 import com.rgv04.hr.domain.dto.RegionFilter;
 import com.rgv04.hr.domain.dto.RegionModel;
 import com.rgv04.hr.domain.dto.RegionWithCountryModel;
+import com.rgv04.hr.domain.exception.BusinessException;
 import com.rgv04.hr.domain.exception.RegionNotFoundException;
 import com.rgv04.hr.domain.model.Region;
 import com.rgv04.hr.domain.repository.RegionRepository;
-import com.rgv04.hr.exception.BusinessException;
 
 @Service
 @Transactional

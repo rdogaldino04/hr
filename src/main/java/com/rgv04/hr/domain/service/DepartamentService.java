@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.rgv04.hr.domain.assembler.DepartamentAssembler;
 import com.rgv04.hr.domain.dto.DepartamentModel;
+import com.rgv04.hr.domain.exception.BusinessException;
 import com.rgv04.hr.domain.repository.DepartamentRepository;
-import com.rgv04.hr.exception.BusinessException;
 
 import lombok.RequiredArgsConstructor;
 

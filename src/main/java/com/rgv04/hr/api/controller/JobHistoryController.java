@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rgv04.hr.domain.jobhistory.JobHistoryModel;
-import com.rgv04.hr.domain.jobhistory.JobHistoryService;
+import com.rgv04.hr.domain.model.JobHistoryModel;
+import com.rgv04.hr.domain.service.JobHistoryService;
 
 import lombok.RequiredArgsConstructor;
 

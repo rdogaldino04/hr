@@ -1,7 +1,5 @@
 package com.rgv04.hr.domain.exception;
 
-import com.rgv04.hr.exception.EntityNotFoundException;
-
 public class RegionNotFoundException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;

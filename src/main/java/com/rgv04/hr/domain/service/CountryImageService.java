@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import com.rgv04.hr.domain.assembler.CountryImageAssembler;
 import com.rgv04.hr.domain.assembler.CountryImageDisassembler;
 import com.rgv04.hr.domain.dto.CountryImageModel;
+import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
 import com.rgv04.hr.domain.repository.CountryRepository;
-import com.rgv04.hr.exception.EntityNotFoundException;
-import com.rgv04.hr.storage.StorageService;
-import com.rgv04.hr.storage.StorageService.newImage;
+import com.rgv04.hr.infrastructure.storage.StorageService;
+import com.rgv04.hr.infrastructure.storage.StorageService.newImage;
 
 @Service
 public class CountryImageService {
