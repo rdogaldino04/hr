@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.repository;
+package com.rgv04.hr.domain.repository.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 
 import com.rgv04.hr.domain.dto.RegionFilter;
 import com.rgv04.hr.domain.model.Region;
+import com.rgv04.hr.domain.repository.RegionRepositoryQueries;
 
 @Repository
 public class RegionRepositoryImpl implements RegionRepositoryQueries {

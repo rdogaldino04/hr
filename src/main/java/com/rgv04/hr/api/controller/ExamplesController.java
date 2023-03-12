@@ -28,9 +28,8 @@ public class ExamplesController {
     }
 
     @PutMapping("/api/examples/img")
-    public ResponseEntity<?> img(Boolean jpg, String descFile, @RequestPart(required = true) MultipartFile mFile)
+    public ResponseEntity<Object> img(boolean jpg, String descFile, @RequestPart(required = true) MultipartFile mFile)
             throws IOException {
-        System.out.println(mFile.getContentType());
         MediaType contentType = jpg ? MediaType.IMAGE_JPEG : MediaType.IMAGE_PNG;
         return ResponseEntity.ok()
                 .contentType(contentType)

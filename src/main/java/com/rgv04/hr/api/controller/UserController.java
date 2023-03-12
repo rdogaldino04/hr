@@ -22,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +38,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rgv04.hr.domain.assembler.UserModelAssembler;
+import com.rgv04.hr.domain.dto.RoleDTO;
 import com.rgv04.hr.domain.dto.UserFilter;
 import com.rgv04.hr.domain.dto.UserInput;
 import com.rgv04.hr.domain.dto.UserModel;
@@ -57,6 +59,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api/users")
 @RequiredArgsConstructor
 public class UserController {
+	
+	private String secret = "secret";
 
     private final UserService userService;
 
@@ -95,57 +99,58 @@ public class UserController {
     }
 
     @PostMapping("roles")
-    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
+    public ResponseEntity<RoleDTO> saveRole(@RequestBody RoleDTO roleDTO) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/roles").toString());
-        return ResponseEntity.created(uri).body(userService.saveRole(role));
+        return ResponseEntity.created(uri).body(userService.saveRole(roleDTO));
     }
 
     @PostMapping("roles/add-to-user")
-    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
+    public ResponseEntity<Object> addRoleToUser(@RequestBody RoleToUserForm form) {
         userService.addRoleToUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("token/refresh")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ResponseEntity<Void> refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             try {
-                String refresh_token = authorizationHeader.substring("Bearer ".length());
-                Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+                String refreshToken = authorizationHeader.substring("Bearer ".length());
+                Algorithm algorithm = Algorithm.HMAC256(secret.getBytes());
                 JWTVerifier verifier = JWT.require(algorithm).build();
-                DecodedJWT decodedJWT = verifier.verify(refresh_token);
+                DecodedJWT decodedJWT = verifier.verify(refreshToken);
                 String username = decodedJWT.getSubject();
                 User user = userService.getUser(username);
-                String acess_token = JWT.create()
+                String acessToken = JWT.create()
                         .withSubject(user.getUsername())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
                         .withClaim("roles",
                                 user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                         .sign(algorithm);
-                Map<String, String> tokens = new HashMap<String, String>();
-                tokens.put("acess_token", acess_token);
-                tokens.put("refresh_token", refresh_token);
+                Map<String, String> tokens = new HashMap<>();
+                tokens.put("acess_token", acessToken);
+                tokens.put("refresh_token", refreshToken);
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+                return ResponseEntity.noContent().build();
             } catch (Exception e) {
                 response.setHeader("error", e.getMessage());
                 response.setStatus(HttpStatus.FORBIDDEN.value());
-                // response.sendError(FORBIDDEN.value());
                 Map<String, String> error = new HashMap<>();
                 error.put("error_message", e.getMessage());
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(), error);
+                return ResponseEntity.noContent().build();
             }
         } else {
-            throw new RuntimeException("Refresh token is missing");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
     }
 
     @GetMapping("current")
     public ResponseEntity<UserCurrentModel> getUserCurrent(Authentication authentication) {
-        List<String> roleNames = authentication.getAuthorities().stream().map(authorities -> authorities.getAuthority())
+        List<String> roleNames = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(UserCurrentModel.builder()
                 .username(authentication.getName())

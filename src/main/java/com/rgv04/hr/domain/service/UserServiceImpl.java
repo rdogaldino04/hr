@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.rgv04.hr.domain.dto.RoleDTO;
 import com.rgv04.hr.domain.exception.BusinessException;
 import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.model.Role;
@@ -58,8 +59,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
+    public RoleDTO saveRole(RoleDTO roleDTO) {
+        return roleDTO.toDTO(roleRepository.save(roleDTO.toEntity()));
     }
 
     @Override

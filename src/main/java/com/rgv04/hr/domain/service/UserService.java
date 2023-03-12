@@ -2,21 +2,21 @@ package com.rgv04.hr.domain.service;
 
 import java.util.List;
 
-import com.rgv04.hr.domain.model.Role;
+import com.rgv04.hr.domain.dto.RoleDTO;
 import com.rgv04.hr.domain.model.User;
 
 public interface UserService {
 
-    User save(User user);
+	User save(User user);
 
-    Role saveRole(Role role);
+	RoleDTO saveRole(RoleDTO roleDTO);
 
-    void addRoleToUser(String username, String roleName);
+	void addRoleToUser(String username, String roleName);
 
-    User getUser(String username);
+	User getUser(String username);
 
-    List<User> getUsers();
+	List<User> getUsers();
 
-    User getUserById(Long id);
+	User getUserById(Long id);
 
 }

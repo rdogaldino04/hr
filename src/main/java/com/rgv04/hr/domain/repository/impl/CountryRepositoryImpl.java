@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.repository;
+package com.rgv04.hr.domain.repository.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import com.rgv04.hr.domain.dto.CountryFilter;
 import com.rgv04.hr.domain.model.Country;
 import com.rgv04.hr.domain.model.CountryImage;
+import com.rgv04.hr.domain.repository.CountryRepositoryQueries;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.repository;
+package com.rgv04.hr.domain.repository.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 
 import com.rgv04.hr.domain.dto.EmployeeFilter;
 import com.rgv04.hr.domain.dto.EmployeeOnlyFirstNameAndHireDate;
+import com.rgv04.hr.domain.repository.EmployeeRepositoryQueries;
 
 public class EmployeeRepositoryImpl implements EmployeeRepositoryQueries {
 

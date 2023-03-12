@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.repository;
+package com.rgv04.hr.domain.repository.impl;
 
 import java.util.Optional;
 
@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+
+import com.rgv04.hr.domain.repository.CustomJpaRepository;
 
 public class CustomJpaRepositoryImpl<T, I> extends SimpleJpaRepository<T, I> implements CustomJpaRepository<T, I> {
 
