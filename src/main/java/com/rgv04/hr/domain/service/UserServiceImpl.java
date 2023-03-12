@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.rgv04.hr.domain.assembler.UserModelAssembler;
 import com.rgv04.hr.domain.dto.RoleDTO;
+import com.rgv04.hr.domain.dto.UserFilter;
 import com.rgv04.hr.domain.dto.UserModel;
 import com.rgv04.hr.domain.exception.BusinessException;
 import com.rgv04.hr.domain.exception.EntityNotFoundException;
@@ -24,6 +28,8 @@ import com.rgv04.hr.domain.model.Role;
 import com.rgv04.hr.domain.model.User;
 import com.rgv04.hr.domain.repository.RoleRepository;
 import com.rgv04.hr.domain.repository.UserRepository;
+import com.rgv04.hr.domain.specs.UserSpecs;
+import com.rgv04.hr.infrastructure.core.data.PageWrapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,14 +42,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final RoleRepository roleRepository;     
     private final PasswordEncoder passwordEncoder;
     private final UserModelAssembler userModelAssembler;
+    private final PagedResourcesAssembler<User> pagedResourcesAssembler;
 
     @Lazy
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, @Lazy PasswordEncoder passwordEncoder,
-    UserModelAssembler userModelAssembler) {
+    UserModelAssembler userModelAssembler, PagedResourcesAssembler<User> pagedResourcesAssembler) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.userModelAssembler = userModelAssembler;
+        this.pagedResourcesAssembler = pagedResourcesAssembler;
     }
 
     @Override
@@ -107,6 +115,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository
             .findById(id)
             .orElseThrow(() -> new EntityNotFoundException(String.format("There is no user account with code %d", id)));
+    }
+
+    @Override
+    public CollectionModel<UserModel> findAllPaginatedUsers(UserFilter userFilter, Pageable pageable) {
+    	Page<User> userPage = userRepository.findAll(UserSpecs.usingFilter(userFilter), pageable);        
+        userPage = new PageWrapper<>(userPage, pageable);
+        return pagedResourcesAssembler.toModel(userPage, userModelAssembler);
     }
 
 }

@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,10 +43,7 @@ import com.rgv04.hr.domain.dto.UserModel;
 import com.rgv04.hr.domain.dto.UserWithPasswordInput;
 import com.rgv04.hr.domain.model.Role;
 import com.rgv04.hr.domain.model.User;
-import com.rgv04.hr.domain.repository.UserRepository;
 import com.rgv04.hr.domain.service.UserService;
-import com.rgv04.hr.domain.specs.UserSpecs;
-import com.rgv04.hr.infrastructure.core.data.PageWrapper;
 
 import lombok.Builder;
 import lombok.Data;
@@ -68,16 +63,10 @@ public class UserController {
 
     private final ModelMapper modelMapper;
 
-    private final UserRepository userRepository;
-
-    private final PagedResourcesAssembler<User> pagedResourcesAssembler;
-
     @GetMapping
     public ResponseEntity<Object> getUsers(UserFilter userFilter, boolean isPagination, @PageableDefault(size = 6) Pageable pageable) {
         if (isPagination) {
-            Page<User> userPage = userRepository.findAll(UserSpecs.usingFilter(userFilter), pageable);
-            userPage = new PageWrapper<>(userPage, pageable);
-            return ResponseEntity.ok(pagedResourcesAssembler.toModel(userPage, userModelAssembler));
+        	return ResponseEntity.ok(this.userService.findAllPaginatedUsers(userFilter, pageable));
         }
         return ResponseEntity.ok(userService.getUsers());
     }
