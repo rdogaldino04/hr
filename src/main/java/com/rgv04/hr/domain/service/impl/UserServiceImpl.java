@@ -1,4 +1,4 @@
-package com.rgv04.hr.domain.service;
+package com.rgv04.hr.domain.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +28,7 @@ import com.rgv04.hr.domain.model.Role;
 import com.rgv04.hr.domain.model.User;
 import com.rgv04.hr.domain.repository.RoleRepository;
 import com.rgv04.hr.domain.repository.UserRepository;
+import com.rgv04.hr.domain.service.UserService;
 import com.rgv04.hr.domain.specs.UserSpecs;
 import com.rgv04.hr.infrastructure.core.data.PageWrapper;
 
@@ -91,8 +92,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public CollectionModel<UserModel> getUsers() {
-        return userModelAssembler.toCollectionModel(userRepository.getAll());
+    public CollectionModel<UserModel> getUsers(UserFilter filter) {
+        return userModelAssembler.toCollectionModel(userRepository.getAll(filter));
     }
 
     @Override

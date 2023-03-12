@@ -18,7 +18,7 @@ public interface UserService {
 
 	User getUser(String username);
 
-	CollectionModel<UserModel> getUsers();
+	CollectionModel<UserModel> getUsers(UserFilter filter);
 
 	User getUserById(Long id);
 

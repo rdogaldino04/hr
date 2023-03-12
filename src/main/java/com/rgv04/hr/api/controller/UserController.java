@@ -68,7 +68,7 @@ public class UserController {
         if (isPagination) {
         	return ResponseEntity.ok(this.userService.findAllPaginatedUsers(userFilter, pageable));
         }
-        return ResponseEntity.ok(userService.getUsers());
+        return ResponseEntity.ok(userService.getUsers(userFilter));
     }
 
     @PostMapping

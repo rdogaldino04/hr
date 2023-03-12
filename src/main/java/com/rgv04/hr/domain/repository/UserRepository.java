@@ -8,14 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.rgv04.hr.domain.model.User;
 
-public interface UserRepository extends CustomJpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+public interface UserRepository
+		extends CustomJpaRepository<User, Long>, JpaSpecificationExecutor<User>, UserRepositoryQueries {
 
-    Optional<User> findByUsername(String username);
+	Optional<User> findByUsername(String username);
 
-    @Query("select u from User u")
-    List<User> getAll();
-
-    @Query("select u from User u join fetch u.roles r order by u.username")
-    List<User> findAll();
+	@Query("select u from User u join fetch u.roles r order by u.username")
+	List<User> findAll();
 
 }
