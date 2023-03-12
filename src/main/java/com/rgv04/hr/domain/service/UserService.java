@@ -1,8 +1,9 @@
 package com.rgv04.hr.domain.service;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.rgv04.hr.domain.dto.RoleDTO;
+import com.rgv04.hr.domain.dto.UserModel;
 import com.rgv04.hr.domain.model.User;
 
 public interface UserService {
@@ -15,7 +16,7 @@ public interface UserService {
 
 	User getUser(String username);
 
-	List<User> getUsers();
+	CollectionModel<UserModel> getUsers();
 
 	User getUserById(Long id);
 

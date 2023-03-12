@@ -79,7 +79,7 @@ public class UserController {
             userPage = new PageWrapper<>(userPage, pageable);
             return ResponseEntity.ok(pagedResourcesAssembler.toModel(userPage, userModelAssembler));
         }
-        return ResponseEntity.ok(userModelAssembler.toCollectionModel(userService.getUsers()));
+        return ResponseEntity.ok(userService.getUsers());
     }
 
     @PostMapping

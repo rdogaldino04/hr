@@ -15,7 +15,7 @@ public interface UserRepository extends CustomJpaRepository<User, Long>, JpaSpec
     @Query("select u from User u")
     List<User> getAll();
 
-    @Query("select u from User u join fetch Role r order by u.username")
+    @Query("select u from User u join fetch u.roles r order by u.username")
     List<User> findAll();
 
 }

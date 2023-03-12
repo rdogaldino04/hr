@@ -2,12 +2,12 @@ package com.rgv04.hr.domain.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +15,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.rgv04.hr.domain.assembler.UserModelAssembler;
 import com.rgv04.hr.domain.dto.RoleDTO;
+import com.rgv04.hr.domain.dto.UserModel;
 import com.rgv04.hr.domain.exception.BusinessException;
 import com.rgv04.hr.domain.exception.EntityNotFoundException;
 import com.rgv04.hr.domain.model.Role;
@@ -33,12 +35,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;     
     private final PasswordEncoder passwordEncoder;
+    private final UserModelAssembler userModelAssembler;
 
     @Lazy
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, @Lazy PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, @Lazy PasswordEncoder passwordEncoder,
+    UserModelAssembler userModelAssembler) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userModelAssembler = userModelAssembler;
     }
 
     @Override
@@ -78,8 +83,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.getAll();
+    public CollectionModel<UserModel> getUsers() {
+        return userModelAssembler.toCollectionModel(userRepository.getAll());
     }
 
     @Override
