@@ -2,7 +2,6 @@ package com.rgv04.hr.domain.assembler;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -22,11 +21,6 @@ public class EmployeeAssembler extends RepresentationModelAssemblerSupport<Emplo
 
 	public EmployeeAssembler() {
 		super(EmployeeController.class, EmployeeModel.class);
-	}
-
-	@Override
-	public CollectionModel<EmployeeModel> toCollectionModel(Iterable<? extends Employee> entities) {
-		return toCollectionModel(entities);
 	}
 
 	@Override
